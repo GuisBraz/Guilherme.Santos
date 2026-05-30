@@ -5,233 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Engenharia Mecânica — IFMG Campus Betim</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  :root {
-    --green: #00703c; --green-dark: #005a30; --green-light: #e8f4ed;
-    --steel: #1a2332; --steel-mid: #2d3f55;
-    --orange: #e85d04; --orange-light: #f48c06;
-    --sofir-blue: #1a3a5c; --sofir-accent: #2e86c1;
-    --cream: #f5f5f0; --cream-dark: #e0e0d8;
-    --white: #ffffff; --text-dark: #0d1b2a; --text-muted: #5a7090;
-  }
-  html { scroll-behavior: smooth; }
-  body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--text-dark); overflow-x: hidden; }
-
-  /* ── NAV ── */
-  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: var(--green-dark); display: flex; justify-content: space-between; align-items: center; padding: 0 4rem; height: 64px; border-bottom: 3px solid var(--orange); }
-  .nav-brand { display: flex; flex-direction: column; gap: 1px; }
-  .nav-brand-top { font-family: 'DM Mono', monospace; font-size: 0.52rem; letter-spacing: 2px; color: rgba(255,255,255,0.45); text-transform: uppercase; }
-  .nav-brand-name { font-family: 'Bebas Neue', sans-serif; font-size: 1.2rem; color: var(--white); letter-spacing: 2px; }
-  .nav-brand-name span { color: #7ed9a8; }
-  .nav-links { display: flex; gap: 2rem; list-style: none; }
-  .nav-links a { font-size: 0.72rem; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.6); text-decoration: none; transition: color 0.2s; }
-  .nav-links a:hover { color: #7ed9a8; }
-
-  /* ── HERO ── */
-  .hero { min-height: 100vh; background: var(--green-dark); position: relative; display: grid; grid-template-columns: 1fr 1fr; overflow: hidden; padding-top: 64px; }
-  .hero-bg-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px); background-size: 60px 60px; }
-  .hero-bg-accent { position: absolute; top: -200px; right: -200px; width: 700px; height: 700px; border-radius: 50%; background: radial-gradient(circle, rgba(0,112,60,0.3) 0%, transparent 70%); }
-  .hero-left { position: relative; z-index: 2; display: flex; flex-direction: column; justify-content: center; padding: 6rem 4rem 6rem 6rem; }
-  .hero-inst-tag { display: inline-flex; align-items: center; gap: 10px; background: rgba(0,112,60,0.3); border: 1px solid rgba(126,217,168,0.3); color: #7ed9a8; font-size: 0.67rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; padding: 7px 14px; border-radius: 2px; margin-bottom: 1rem; width: fit-content; }
-  .hero-tag { display: inline-flex; align-items: center; gap: 8px; background: rgba(232,93,4,0.15); border: 1px solid rgba(232,93,4,0.4); color: #f4a86a; font-size: 0.67rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; padding: 6px 14px; border-radius: 2px; margin-bottom: 2rem; width: fit-content; }
-  .hero-tag::before { content: ''; width: 6px; height: 6px; background: var(--orange); border-radius: 50%; animation: pulse 1.5s ease-in-out infinite; }
-  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.4;transform:scale(0.8)} }
-  .hero-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3.5rem,6.5vw,6rem); line-height: 0.95; color: var(--white); margin-bottom: 1.5rem; letter-spacing: 1px; }
-  .hero-title .highlight { color: #7ed9a8; display: block; }
-  .hero-subtitle { font-size: 0.93rem; font-weight: 300; color: rgba(255,255,255,0.52); line-height: 1.8; max-width: 440px; margin-bottom: 1.2rem; }
-  .hero-portaria { font-family: 'DM Mono', monospace; font-size: 0.6rem; color: rgba(255,255,255,0.25); letter-spacing: 1px; margin-bottom: 2.5rem; }
-  .hero-cta-group { display: flex; gap: 1rem; align-items: center; }
-  .btn-primary { background: var(--green); color: white; font-weight: 600; font-size: 0.8rem; letter-spacing: 1px; text-transform: uppercase; padding: 14px 30px; border: none; cursor: pointer; text-decoration: none; display: inline-block; transition: background 0.2s, transform 0.1s; border-radius: 2px; }
-  .btn-primary:hover { background: #00904d; transform: translateY(-1px); }
-  .btn-outline { background: transparent; color: rgba(255,255,255,0.6); font-weight: 500; font-size: 0.8rem; letter-spacing: 1px; text-transform: uppercase; padding: 14px 30px; border: 1px solid rgba(255,255,255,0.18); cursor: pointer; text-decoration: none; display: inline-block; transition: border-color 0.2s, color 0.2s; border-radius: 2px; }
-  .btn-outline:hover { border-color: #7ed9a8; color: #7ed9a8; }
-  .hero-right { position: relative; z-index: 2; display: flex; align-items: center; justify-content: center; padding: 4rem; }
-  .hero-stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5px; width: 100%; max-width: 420px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.07); }
-  .hero-stat { background: rgba(255,255,255,0.02); padding: 2.2rem 1.8rem; transition: background 0.2s; }
-  .hero-stat:hover { background: rgba(0,112,60,0.15); }
-  .hero-stat-num { font-family: 'Bebas Neue', sans-serif; font-size: 3.2rem; line-height: 1; color: #7ed9a8; margin-bottom: 0.4rem; }
-  .hero-stat-label { font-size: 0.7rem; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; color: rgba(255,255,255,0.38); }
-  .hero-stat-detail { font-size: 0.6rem; color: rgba(255,255,255,0.2); margin-top: 3px; font-family: 'DM Mono', monospace; }
-
-  /* ── SHARED ── */
-  .section-label { font-family: 'DM Mono', monospace; font-size: 0.66rem; font-weight: 500; letter-spacing: 3px; text-transform: uppercase; color: var(--green); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 12px; }
-  .section-label::after { content: ''; flex: 1; height: 1px; background: var(--green); max-width: 40px; }
-  .section-label.light { color: #7ed9a8; }
-  .section-label.light::after { background: #7ed9a8; }
-  .section-label.orange { color: var(--orange-light); }
-  .section-label.orange::after { background: var(--orange-light); }
-
-  /* ── IFMG ── */
-  .ifmg { padding: 7rem 6rem; background: white; display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
-  .ifmg-text h2 { font-family: 'Bebas Neue', sans-serif; font-size: 2.8rem; color: var(--green-dark); margin-bottom: 1.2rem; letter-spacing: 0.5px; line-height: 1.05; }
-  .ifmg-text p { font-size: 0.9rem; font-weight: 300; color: #3a5068; line-height: 1.9; margin-bottom: 1rem; }
-  .ifmg-text a { color: var(--green); font-weight: 500; text-decoration: none; border-bottom: 1px solid rgba(0,112,60,0.3); transition: border-color 0.2s; }
-  .ifmg-text a:hover { border-color: var(--green); }
-  .ifmg-cards { display: flex; flex-direction: column; gap: 1px; background: var(--cream-dark); border: 1px solid var(--cream-dark); }
-  .ifmg-card { background: white; padding: 1.3rem 1.6rem; display: flex; align-items: center; gap: 1.2rem; transition: background 0.2s; border-left: 3px solid transparent; }
-  .ifmg-card:hover { background: var(--green-light); border-left-color: var(--green); }
-  .ifmg-card-icon { font-size: 1.5rem; flex-shrink: 0; }
-  .ifmg-card-text h4 { font-size: 0.78rem; font-weight: 600; color: var(--green-dark); margin-bottom: 2px; }
-  .ifmg-card-text p { font-size: 0.72rem; color: var(--text-muted); font-weight: 300; }
-
-  /* ── APRESENTAÇÃO ── */
-  .apresentacao { padding: 7rem 6rem; background: var(--cream); }
-  .apresentacao-inner { display: grid; grid-template-columns: 2fr 1fr; gap: 5rem; align-items: start; margin-top: 0; }
-  .apresentacao h2 { font-family: 'Bebas Neue', sans-serif; font-size: 2.8rem; color: var(--steel); margin-bottom: 1.5rem; letter-spacing: 0.5px; }
-  .apresentacao p { font-size: 0.9rem; font-weight: 300; color: #3a5068; line-height: 1.9; margin-bottom: 1rem; }
-  .info-table { background: white; border: 1px solid var(--cream-dark); overflow: hidden; }
-  .info-table-header { background: var(--green-dark); padding: 1rem 1.5rem; }
-  .info-table-header h4 { font-family: 'Bebas Neue', sans-serif; font-size: 1rem; color: white; letter-spacing: 2px; }
-  .info-row { display: grid; grid-template-columns: 1fr 1.2fr; border-bottom: 1px solid var(--cream-dark); }
-  .info-row:last-child { border-bottom: none; }
-  .info-key { padding: 0.78rem 1rem; font-size: 0.68rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; background: #fafaf8; border-right: 1px solid var(--cream-dark); }
-  .info-val { padding: 0.78rem 1rem; font-size: 0.75rem; font-weight: 400; color: var(--text-dark); }
-  .info-val strong { color: var(--green-dark); font-weight: 600; }
-  .apresentacao-pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; margin-top: 3rem; background: var(--cream-dark); border: 1px solid var(--cream-dark); }
-  .pillar { background: var(--cream); padding: 1.5rem 1.3rem; border-top: 3px solid transparent; transition: border-color 0.2s, background 0.2s; }
-  .pillar:hover { border-color: var(--green); background: white; }
-  .pillar-icon { font-size: 1.6rem; margin-bottom: 0.6rem; }
-  .pillar h4 { font-size: 0.77rem; font-weight: 600; color: var(--steel); margin-bottom: 0.3rem; }
-  .pillar p { font-size: 0.72rem; color: var(--text-muted); line-height: 1.6; }
-
-  /* ── SOFIR DESTAQUE ── */
-  .sofir-section { padding: 7rem 6rem; background: var(--sofir-blue); position: relative; overflow: hidden; }
-  .sofir-section::before { content: 'SOFIR'; position: absolute; right: -40px; top: 50%; transform: translateY(-50%); font-family: 'Bebas Neue', sans-serif; font-size: 22vw; color: rgba(255,255,255,0.03); pointer-events: none; line-height: 1; }
-  .sofir-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; position: relative; z-index: 2; }
-  .sofir-text h2 { font-family: 'Bebas Neue', sans-serif; font-size: 2.8rem; color: white; margin-bottom: 0.5rem; letter-spacing: 0.5px; line-height: 1.05; }
-  .sofir-text h2 span { color: #7ec8e3; }
-  .sofir-tagline { font-family: 'DM Mono', monospace; font-size: 0.68rem; letter-spacing: 2px; color: rgba(255,255,255,0.35); text-transform: uppercase; margin-bottom: 1.5rem; }
-  .sofir-text p { font-size: 0.88rem; font-weight: 300; color: rgba(255,255,255,0.55); line-height: 1.85; margin-bottom: 1rem; }
-  .sofir-text a.sofir-link { display: inline-flex; align-items: center; gap: 8px; background: rgba(46,134,193,0.2); border: 1px solid rgba(46,134,193,0.4); color: #7ec8e3; font-size: 0.78rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; padding: 10px 20px; border-radius: 2px; text-decoration: none; margin-top: 0.5rem; transition: background 0.2s, border-color 0.2s; }
-  .sofir-text a.sofir-link:hover { background: rgba(46,134,193,0.35); border-color: rgba(46,134,193,0.6); }
-  .sofir-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.07); margin-top: 2.5rem; }
-  .sofir-stat { background: rgba(255,255,255,0.03); padding: 1.8rem 1.5rem; }
-  .sofir-stat-num { font-family: 'Bebas Neue', sans-serif; font-size: 2.5rem; color: #7ec8e3; line-height: 1; margin-bottom: 0.3rem; }
-  .sofir-stat-label { font-size: 0.7rem; color: rgba(255,255,255,0.38); letter-spacing: 1px; text-transform: uppercase; }
-  .sofir-sectors { display: flex; flex-direction: column; gap: 1.5px; }
-  .sofir-sector-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07); padding: 1.5rem 1.8rem; position: relative; overflow: hidden; transition: background 0.2s; border-left: 3px solid rgba(46,134,193,0.3); }
-  .sofir-sector-card:hover { background: rgba(46,134,193,0.1); border-left-color: #7ec8e3; }
-  .sofir-sector-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.4rem; }
-  .sofir-sector-name { font-size: 0.88rem; font-weight: 600; color: white; }
-  .sofir-sector-icon { font-size: 1.3rem; }
-  .sofir-sector-desc { font-size: 0.75rem; font-weight: 300; color: rgba(255,255,255,0.4); line-height: 1.6; }
-  .sofir-iso { display: inline-flex; align-items: center; gap: 8px; background: rgba(126,200,227,0.1); border: 1px solid rgba(126,200,227,0.25); padding: 6px 12px; border-radius: 2px; margin-top: 0.8rem; font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 1px; color: #7ec8e3; }
-  .sofir-clientes { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 1.2rem; }
-  .cliente-tag { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); padding: 4px 10px; border-radius: 2px; font-size: 0.65rem; color: rgba(255,255,255,0.38); font-family: 'DM Mono', monospace; letter-spacing: 0.5px; }
-
-  /* ── LINHA DO TEMPO / GRADE CURRICULAR ── */
-  .timeline-section { padding: 7rem 6rem; background: var(--steel); position: relative; overflow: hidden; }
-  .timeline-section::before { content: ''; position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px); background-size: 40px 40px; }
-  .timeline-header { position: relative; z-index: 2; margin-bottom: 1rem; }
-  .timeline-header h2 { font-family: 'Bebas Neue', sans-serif; font-size: 2.8rem; color: white; letter-spacing: 0.5px; }
-  .timeline-header p { font-size: 0.85rem; font-weight: 300; color: rgba(255,255,255,0.38); margin-top: 0.4rem; margin-bottom: 2.5rem; }
-  .timeline-controls { display: flex; gap: 6px; margin-bottom: 3rem; flex-wrap: wrap; position: relative; z-index: 2; }
-  .period-btn { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 1.5px; text-transform: uppercase; padding: 8px 16px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.45); cursor: pointer; transition: all 0.2s; border-radius: 2px; }
-  .period-btn:hover { border-color: rgba(255,255,255,0.25); color: rgba(255,255,255,0.7); }
-  .period-btn.active { background: var(--green); border-color: var(--green); color: white; }
-  .timeline-track { position: relative; z-index: 2; }
-  .timeline-year { display: none; }
-  .timeline-year.visible { display: block; }
-  .year-header { display: flex; align-items: center; gap: 1.5rem; margin-bottom: 1.8rem; }
-  .year-badge { font-family: 'Bebas Neue', sans-serif; font-size: 3.5rem; color: #7ed9a8; line-height: 1; flex-shrink: 0; }
-  .year-info { display: flex; flex-direction: column; gap: 4px; }
-  .year-title { font-size: 0.9rem; font-weight: 600; color: white; }
-  .year-ch { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 1px; color: rgba(255,255,255,0.3); }
-  .year-bar { height: 2px; background: rgba(255,255,255,0.06); flex: 1; position: relative; overflow: hidden; }
-  .year-bar-fill { height: 100%; background: #7ed9a8; transition: width 0.8s ease; }
-  .disciplines-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); margin-bottom: 3rem; }
-  .disc-card { background: rgba(255,255,255,0.02); padding: 1.3rem 1.5rem; position: relative; transition: background 0.2s; border-left: 2px solid transparent; }
-  .disc-card:hover { background: rgba(0,112,60,0.12); border-left-color: #7ed9a8; }
-  .disc-code { font-family: 'DM Mono', monospace; font-size: 0.58rem; letter-spacing: 1px; color: rgba(255,255,255,0.2); margin-bottom: 0.4rem; }
-  .disc-name { font-size: 0.82rem; font-weight: 500; color: rgba(255,255,255,0.82); margin-bottom: 0.4rem; line-height: 1.3; }
-  .disc-ch { font-family: 'DM Mono', monospace; font-size: 0.62rem; color: #7ed9a8; }
-  .timeline-progress { display: flex; align-items: center; gap: 2rem; margin-top: 1rem; padding: 1.5rem 2rem; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); position: relative; z-index: 2; }
-  .progress-label { font-size: 0.72rem; color: rgba(255,255,255,0.35); font-family: 'DM Mono', monospace; letter-spacing: 1px; flex-shrink: 0; }
-  .progress-track { flex: 1; height: 4px; background: rgba(255,255,255,0.06); border-radius: 2px; overflow: hidden; display: flex; gap: 2px; }
-  .progress-seg { flex: 1; height: 100%; background: rgba(255,255,255,0.08); border-radius: 1px; transition: background 0.3s; }
-  .progress-seg.done { background: #7ed9a8; }
-  .progress-seg.active { background: var(--orange); }
-  .progress-total { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; color: #7ed9a8; flex-shrink: 0; }
-
-  /* ── ÁREAS ── */
-  .areas { background: #0f1c2a; padding: 7rem 6rem; position: relative; overflow: hidden; }
-  .areas::before { content: ''; position: absolute; bottom: -100px; left: -100px; width: 500px; height: 500px; border-radius: 50%; background: radial-gradient(circle, rgba(0,112,60,0.08) 0%, transparent 70%); }
-  .areas-header { margin-bottom: 3.5rem; }
-  .areas-header h2 { font-family: 'Bebas Neue', sans-serif; font-size: 2.8rem; color: white; letter-spacing: 1px; line-height: 1; margin-bottom: 0.4rem; }
-  .areas-header p { font-size: 0.8rem; font-weight: 300; color: rgba(255,255,255,0.35); }
-  .areas-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.05); }
-  .area-card { background: #0f1c2a; padding: 2.2rem; position: relative; overflow: hidden; transition: background 0.3s; }
-  .area-card::after { content: ''; position: absolute; bottom: 0; left: 0; height: 2px; width: 0; background: #7ed9a8; transition: width 0.4s ease; }
-  .area-card:hover { background: #1a2d42; }
-  .area-card:hover::after { width: 100%; }
-  .area-num { font-family: 'DM Mono', monospace; font-size: 0.58rem; color: #7ed9a8; letter-spacing: 2px; margin-bottom: 1.2rem; }
-  .area-industry { font-size: 0.58rem; letter-spacing: 1px; text-transform: uppercase; color: rgba(255,255,255,0.2); margin-bottom: 0.5rem; font-family: 'DM Mono', monospace; }
-  .area-icon { font-size: 2rem; margin-bottom: 1.1rem; display: block; }
-  .area-card h3 { font-size: 0.92rem; font-weight: 600; color: white; margin-bottom: 0.5rem; }
-  .area-card p { font-size: 0.77rem; font-weight: 300; color: rgba(255,255,255,0.38); line-height: 1.7; }
-
-  /* ── INGRESSO ── */
-  .ingresso { padding: 7rem 6rem; background: var(--cream); }
-  .ingresso h2 { font-family: 'Bebas Neue', sans-serif; font-size: 2.8rem; color: var(--steel); margin-bottom: 3.5rem; letter-spacing: 0.5px; }
-  .ingresso-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--cream-dark); border: 1px solid var(--cream-dark); }
-  .ingresso-card { background: white; padding: 2rem 1.5rem; border-top: 3px solid transparent; transition: border-color 0.2s, background 0.2s; }
-  .ingresso-card:hover { border-color: var(--green); background: var(--green-light); }
-  .ic-icon { font-size: 1.8rem; margin-bottom: 0.8rem; }
-  .ingresso-card h3 { font-size: 0.82rem; font-weight: 600; color: var(--steel); margin-bottom: 0.4rem; }
-  .ingresso-card p { font-size: 0.73rem; color: var(--text-muted); line-height: 1.65; font-weight: 300; }
-
-  /* ── CTA ── */
-  .cta-final { background: var(--green-dark); padding: 7rem 6rem; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; position: relative; overflow: hidden; }
-  .cta-final::before { content: 'EM'; position: absolute; right: -20px; top: 50%; transform: translateY(-50%); font-family: 'Bebas Neue', sans-serif; font-size: 30vw; color: rgba(255,255,255,0.03); pointer-events: none; line-height: 1; }
-  .cta-final h2 { font-family: 'Bebas Neue', sans-serif; font-size: 3.5rem; color: white; letter-spacing: 1px; line-height: 1; margin-bottom: 1rem; }
-  .cta-final p { color: rgba(255,255,255,0.42); font-size: 0.88rem; font-weight: 300; line-height: 1.8; }
-  .cta-final-info { display: flex; flex-direction: column; gap: 0.6rem; margin-top: 1.5rem; }
-  .cta-info-item { display: flex; align-items: center; gap: 10px; font-size: 0.77rem; color: rgba(255,255,255,0.45); }
-  .cta-info-item span { color: #7ed9a8; }
-  .cta-form { display: flex; flex-direction: column; gap: 1rem; position: relative; z-index: 2; }
-  .cta-form input, .cta-form select { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.13); color: white; font-family: 'DM Sans', sans-serif; font-size: 0.88rem; padding: 14px 18px; border-radius: 2px; outline: none; transition: border-color 0.2s, background 0.2s; }
-  .cta-form input::placeholder { color: rgba(255,255,255,0.28); }
-  .cta-form select option { background: var(--green-dark); }
-  .cta-form input:focus, .cta-form select:focus { border-color: #7ed9a8; background: rgba(255,255,255,0.1); }
-  .btn-green { background: var(--green); color: white; font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 0.8rem; letter-spacing: 1.5px; text-transform: uppercase; padding: 16px 32px; border: none; cursor: pointer; transition: background 0.2s, transform 0.1s; border-radius: 2px; margin-top: 0.5rem; }
-  .btn-green:hover { background: #00904d; transform: translateY(-1px); }
-
-  /* ── FOOTER ── */
-  footer { background: #040d07; padding: 2.5rem 6rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
-  .footer-brand { display: flex; flex-direction: column; gap: 2px; }
-  .footer-brand-top { font-size: 0.55rem; color: rgba(255,255,255,0.2); letter-spacing: 2px; text-transform: uppercase; font-family: 'DM Mono', monospace; }
-  .footer-brand-name { font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem; color: white; letter-spacing: 2px; }
-  .footer-brand-name span { color: #7ed9a8; }
-  footer p { font-size: 0.68rem; color: rgba(255,255,255,0.17); font-weight: 300; }
-  .footer-links { display: flex; gap: 2rem; }
-  .footer-links a { color: rgba(255,255,255,0.2); text-decoration: none; font-size: 0.68rem; transition: color 0.2s; }
-  .footer-links a:hover { color: #7ed9a8; }
-
-  /* ── ANIMATIONS ── */
-  @keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
-  .hero-left > * { animation: fadeUp 0.7s ease forwards; opacity: 0; }
-  .hero-left > *:nth-child(1){animation-delay:0.05s}
-  .hero-left > *:nth-child(2){animation-delay:0.18s}
-  .hero-left > *:nth-child(3){animation-delay:0.32s}
-  .hero-left > *:nth-child(4){animation-delay:0.44s}
-  .hero-left > *:nth-child(5){animation-delay:0.55s}
-  .hero-left > *:nth-child(6){animation-delay:0.65s}
-  .hero-right { animation: fadeUp 0.7s 0.5s ease forwards; opacity: 0; }
-
-  /* ── RESPONSIVE ── */
-  @media(max-width:1024px){
-    nav{padding:0 1.5rem} .nav-links{display:none}
-    .hero{grid-template-columns:1fr} .hero-right{display:none} .hero-left{padding:3.5rem 1.5rem}
-    .ifmg,.apresentacao-inner,.sofir-inner,.cta-final{grid-template-columns:1fr;gap:2.5rem}
-    .ifmg,.apresentacao,.sofir-section,.timeline-section,.areas,.ingresso,.cta-final{padding:4rem 1.5rem}
-    .areas-grid{grid-template-columns:1fr}
-    .disciplines-grid{grid-template-columns:1fr 1fr}
-    .ingresso-grid{grid-template-columns:repeat(2,1fr)}
-    .apresentacao-pillars{grid-template-columns:1fr 1fr}
-    footer{flex-direction:column;text-align:center;padding:2rem 1.5rem} .footer-links{justify-content:center}
-  }
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -240,16 +14,31 @@
   <div class="nav-brand">
     <div class="nav-brand-top">IFMG — Campus Betim</div>
     <div class="nav-brand-name">Eng. <span>Mecânica</span></div>
+    <div class="nav-brand-ext">Projeto Extensionista · Introdução à Engenharia</div>
   </div>
   <ul class="nav-links">
     <li><a href="#ifmg">O Instituto</a></li>
     <li><a href="#apresentacao">O Curso</a></li>
-    <li><a href="#sofir">Sofir do Brasil</a></li>
-    <li><a href="#timeline">Grade Curricular</a></li>
     <li><a href="#areas">Áreas</a></li>
+    <li><a href="#grade">Grade</a></li>
+    <li><a href="#mercado">Mercado</a></li>
     <li><a href="#ingresso">Ingresso</a></li>
+    <li><a href="#mapa">Localização</a></li>
   </ul>
+  <button class="nav-hamburger" id="hamburger" aria-label="Abrir menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#ifmg" onclick="closeMenu()">O Instituto</a>
+  <a href="#apresentacao" onclick="closeMenu()">O Curso</a>
+  <a href="#areas" onclick="closeMenu()">Áreas de Atuação</a>
+  <a href="#grade" onclick="closeMenu()">Grade Curricular</a>
+  <a href="#mercado" onclick="closeMenu()">Mercado</a>
+  <a href="#ingresso" onclick="closeMenu()">Ingresso</a>
+  <a href="#mapa" onclick="closeMenu()">Localização</a>
+</div>
 
 <!-- HERO -->
 <section class="hero">
@@ -260,19 +49,12 @@
     <div class="hero-tag">Bacharelado · Educação Presencial · Noturno</div>
     <h1 class="hero-title">Engenharia<span class="highlight">Mecânica</span></h1>
     <p class="hero-subtitle">Forme-se Engenheiro Mecânico em uma instituição federal de excelência. Projete, fabrique, automatize e inove — do conceito à produção industrial.</p>
-    <div class="hero-portaria">Portaria nº 406/2021 · Título: Engenheiro Mecânico · Nível Superior</div>
     <div class="hero-cta-group">
       <a href="#ingresso" class="btn-primary">Quero me inscrever</a>
-      <a href="#timeline" class="btn-outline">Ver grade curricular</a>
+      <a href="#apresentacao" class="btn-outline">Conhecer o curso</a>
     </div>
   </div>
   <div class="hero-right">
-    <div class="hero-stats-grid">
-      <div class="hero-stat"><div class="hero-stat-num">5</div><div class="hero-stat-label">Anos de duração</div><div class="hero-stat-detail">10 a 18 semestres</div></div>
-      <div class="hero-stat"><div class="hero-stat-num">3.600</div><div class="hero-stat-label">Horas totais</div><div class="hero-stat-detail">Carga horária oficial</div></div>
-      <div class="hero-stat"><div class="hero-stat-num">36</div><div class="hero-stat-label">Vagas por ano</div><div class="hero-stat-detail">Oferta anual</div></div>
-      <div class="hero-stat"><div class="hero-stat-num">19h</div><div class="hero-stat-label">Horário noturno</div><div class="hero-stat-detail">19h às 22h30 · 2ª a 6ª</div></div>
-    </div>
   </div>
 </section>
 
@@ -281,35 +63,35 @@
   <div class="ifmg-text">
     <div class="section-label">A Instituição</div>
     <h2>IFMG — Campus Betim</h2>
-    <p>O <strong>Instituto Federal de Educação, Ciência e Tecnologia de Minas Gerais (IFMG) — Campus Betim</strong> é uma instituição pública federal de ensino vinculada ao Ministério da Educação, com cursos técnicos e superiores voltados à formação tecnológica, pesquisa e extensão.</p>
-    <p>Localizado na Região Metropolitana de BH, o campus está inserido em um dos maiores polos industriais de Minas Gerais — com forte presença dos setores automotivo, siderúrgico e de manufatura — criando oportunidades reais de estágio e inserção profissional para seus alunos.</p>
-    <p>Infraestrutura moderna, laboratórios especializados, biblioteca, iniciação científica e convênios com empresas parceiras. <a href="https://www.ifmg.edu.br/betim" target="_blank" rel="noopener">Acesse o site oficial →</a></p>
+    <p>O <strong>Instituto Federal de Educação, Ciência e Tecnologia de Minas Gerais (IFMG) — Campus Betim</strong> é uma instituição pública federal de ensino vinculada ao Ministério da Educação. Oferta cursos técnicos e superiores com foco em formação tecnológica, pesquisa e extensão.</p>
+    <p>Localizado na Região Metropolitana de Belo Horizonte, o campus está estrategicamente inserido em um dos maiores polos industriais de Minas Gerais — com forte presença dos setores automotivo, siderúrgico e de manufatura — criando oportunidades reais de estágio e inserção profissional para seus alunos.</p>
+    <p>O IFMG Betim conta com infraestrutura moderna, laboratórios especializados, biblioteca, programas de iniciação científica e convênios com empresas da região. <a href="https://www.ifmg.edu.br/betim" target="_blank" rel="noopener">Acesse o site oficial →</a></p>
   </div>
   <div class="ifmg-cards">
-    <div class="ifmg-card"><div class="ifmg-card-icon">🏛️</div><div class="ifmg-card-text"><h4>Ensino Federal Gratuito</h4><p>Pública, gratuita e vinculada ao MEC. Qualidade com acesso democrático.</p></div></div>
+    <div class="ifmg-card"><div class="ifmg-card-icon">🏛️</div><div class="ifmg-card-text"><h4>Instituição Federal de Ensino</h4><p>Gratuita, pública e vinculada ao MEC. Ensino superior de qualidade e acesso democrático.</p></div></div>
     <div class="ifmg-card"><div class="ifmg-card-icon">🏭</div><div class="ifmg-card-text"><h4>Polo Industrial Estratégico</h4><p>Próximo a grandes indústrias automotivas, siderúrgicas e de manufatura da RMBH.</p></div></div>
-    <div class="ifmg-card"><div class="ifmg-card-icon">🔬</div><div class="ifmg-card-text"><h4>Pesquisa & Extensão</h4><p>Iniciação científica, projetos de extensão e grupos de pesquisa ativos.</p></div></div>
+    <div class="ifmg-card"><div class="ifmg-card-icon">🔬</div><div class="ifmg-card-text"><h4>Pesquisa &amp; Extensão</h4><p>Programas de iniciação científica, projetos de extensão e grupos de pesquisa ativos.</p></div></div>
     <div class="ifmg-card"><div class="ifmg-card-icon">📚</div><div class="ifmg-card-text"><h4>Biblioteca e Recursos Digitais</h4><p>Acervo físico e digital com bibliotecas virtuais e repositório institucional.</p></div></div>
-    <div class="ifmg-card"><div class="ifmg-card-icon">🌐</div><div class="ifmg-card-text"><h4>Internacionalização</h4><p>Programas de mobilidade e intercâmbio acadêmico nacionais e internacionais.</p></div></div>
+    <div class="ifmg-card"><div class="ifmg-card-icon">🌐</div><div class="ifmg-card-text"><h4>Mobilidade e Internacionalização</h4><p>Programas de internacionalização e intercâmbio para ampliar a formação dos estudantes.</p></div></div>
     <div class="ifmg-card"><div class="ifmg-card-icon">🤝</div><div class="ifmg-card-text"><h4>Portal de Estágio</h4><p>Suporte completo para estágios e conexão com empresas parceiras da região.</p></div></div>
   </div>
 </section>
 
-<!-- APRESENTAÇÃO DO CURSO -->
+<!-- APRESENTAÇÃO -->
 <section class="apresentacao" id="apresentacao">
   <div class="section-label">O Curso</div>
   <div class="apresentacao-inner">
     <div>
       <h2>O que faz o Engenheiro Mecânico?</h2>
-      <p>O bacharel em Engenharia Mecânica atua no desenvolvimento de projetos e sistemas mecânicos e termodinâmicos. Em sua atividade, <strong>otimiza, projeta, instala, mantém e opera</strong> sistemas mecânicos, termodinâmicos, eletromecânicos, de estruturas e elementos de máquinas — desde a concepção, análise e seleção de materiais, até sua fabricação, controle e manutenção.</p>
-      <p>A formação no IFMG Betim combina fundamentos científicos sólidos com forte ênfase prática, preparando o egresso para atuar com domínio técnico e visão sistêmica nas indústrias da RMBH e em todo o Brasil.</p>
+      <p>O bacharel em Engenharia Mecânica atua no desenvolvimento de projetos e sistemas mecânicos e termodinâmicos. Em sua atividade, <strong>otimiza, projeta, instala, mantém e opera</strong> sistemas mecânicos, termodinâmicos, eletromecânicos, de estruturas e elementos de máquinas — desde sua concepção e análise, passando pela seleção de materiais, até sua fabricação, controle e manutenção.</p>
+      <p>A formação do IFMG Betim combina fundamentos científicos sólidos com forte ênfase prática, preparando o graduado para atuar com domínio técnico e visão sistêmica nas indústrias da Região Metropolitana de Belo Horizonte e em todo o Brasil.</p>
       <div class="apresentacao-pillars">
-        <div class="pillar"><div class="pillar-icon">⚙️</div><h4>Projetar & Otimizar</h4><p>Sistemas mecânicos e elementos de máquinas.</p></div>
-        <div class="pillar"><div class="pillar-icon">🌡️</div><h4>Sistemas Térmicos</h4><p>Termodinâmica, fluidos e eficiência energética.</p></div>
-        <div class="pillar"><div class="pillar-icon">🏭</div><h4>Fabricar & Manter</h4><p>Manufatura, usinagem, soldagem e qualidade.</p></div>
-        <div class="pillar"><div class="pillar-icon">🤖</div><h4>Automatizar</h4><p>CLP, CNC, robótica e sistemas eletromecânicos.</p></div>
-        <div class="pillar"><div class="pillar-icon">🧪</div><h4>Materiais</h4><p>Seleção, análise e ensaios tecnológicos.</p></div>
-        <div class="pillar"><div class="pillar-icon">📐</div><h4>Instalar & Operar</h4><p>Equipamentos e instalações industriais.</p></div>
+        <div class="pillar"><div class="pillar-icon">⚙️</div><h4>Projetar &amp; Otimizar</h4><p>Sistemas mecânicos, elementos de máquinas e estruturas de alta performance.</p></div>
+        <div class="pillar"><div class="pillar-icon">🌡️</div><h4>Termodinâmica</h4><p>Sistemas térmicos, fluidos e eficiência energética industrial.</p></div>
+        <div class="pillar"><div class="pillar-icon">🏭</div><h4>Fabricar &amp; Manter</h4><p>Processos de manufatura, manutenção e controle de qualidade.</p></div>
+        <div class="pillar"><div class="pillar-icon">🤖</div><h4>Automatizar</h4><p>Sistemas eletromecânicos e controle de processos industriais.</p></div>
+        <div class="pillar"><div class="pillar-icon">🧪</div><h4>Materiais</h4><p>Seleção e análise de materiais para aplicações de engenharia.</p></div>
+        <div class="pillar"><div class="pillar-icon">📐</div><h4>Instalar &amp; Operar</h4><p>Instalação e operação de equipamentos e sistemas industriais.</p></div>
       </div>
     </div>
     <div>
@@ -317,7 +99,6 @@
         <div class="info-table-header"><h4>Informações do Curso</h4></div>
         <div class="info-row"><div class="info-key">Denominação</div><div class="info-val"><strong>Engenharia Mecânica</strong></div></div>
         <div class="info-row"><div class="info-key">Título</div><div class="info-val">Engenheiro Mecânico</div></div>
-        <div class="info-row"><div class="info-key">Ato Legal</div><div class="info-val">Portaria 406/2021</div></div>
         <div class="info-row"><div class="info-key">Nível</div><div class="info-val">Superior · Bacharelado</div></div>
         <div class="info-row"><div class="info-key">Modalidade</div><div class="info-val">Educação Presencial</div></div>
         <div class="info-row"><div class="info-key">Oferta</div><div class="info-val"><strong>Anual</strong> · Regular</div></div>
@@ -334,126 +115,424 @@
   </div>
 </section>
 
-<!-- SOFIR DO BRASIL — DESTAQUE -->
-<section class="sofir-section" id="sofir">
-  <div class="sofir-inner">
-    <div class="sofir-text">
-      <div class="section-label orange">Parceiro de Mercado · Referência Regional</div>
-      <h2>Sofir do <span>Brasil</span></h2>
-      <div class="sofir-tagline">Fabricação · Montagem · Recuperação de Máquinas</div>
-      <p>Fundada em <strong>2004</strong> e sediada em <strong>Contagem/MG</strong>, a Sofir do Brasil é referência na fabricação de estruturas metálicas, caldeiradas e usinadas. Com planta industrial de <strong>7.000 m²</strong> e capacidade de <strong>250 toneladas/mês</strong>, atende grandes players dos setores automotivo, siderúrgico, mineração, energia e bens de capital.</p>
-      <p>A empresa entrega soluções completas — de dispositivos e transportadores a sistemas turnkey — sempre com foco em segurança, precisão e prazos. Certificada pela <strong>ISO 9001:2015</strong>, a Sofir é exemplo do perfil de empresa onde engenheiros mecânicos formados pelo IFMG Betim podem construir carreira sólida na região.</p>
-      <div class="sofir-clientes">
-        <span class="cliente-tag">ArcelorMittal</span>
-        <span class="cliente-tag">Aperam</span>
-        <span class="cliente-tag">Alstom</span>
-        <span class="cliente-tag">BYD</span>
-        <span class="cliente-tag">Cargill</span>
-        <span class="cliente-tag">Aumund</span>
-        <span class="cliente-tag">Belgo</span>
-      </div>
-      <div style="display:flex; gap:1rem; align-items:center; margin-top:1.5rem; flex-wrap:wrap;">
-        <a href="https://www.sofirdobrasil.com.br" target="_blank" rel="noopener" class="sofir-link">🌐 Visitar sofirdobrasil.com.br →</a>
-        <div class="sofir-iso">✓ ISO 9001:2015</div>
-      </div>
-      <div class="sofir-stats">
-        <div class="sofir-stat"><div class="sofir-stat-num">2004</div><div class="sofir-stat-label">Fundação</div></div>
-        <div class="sofir-stat"><div class="sofir-stat-num">7.000</div><div class="sofir-stat-label">m² de planta</div></div>
-        <div class="sofir-stat"><div class="sofir-stat-num">250t</div><div class="sofir-stat-label">Capacidade/mês</div></div>
-        <div class="sofir-stat"><div class="sofir-stat-num">5</div><div class="sofir-stat-label">Setores de atuação</div></div>
-      </div>
-    </div>
-    <div class="sofir-sectors">
-      <div class="sofir-sector-card">
-        <div class="sofir-sector-header"><span class="sofir-sector-name">🚗 Automotivo</span><span class="sofir-sector-icon"></span></div>
-        <div class="sofir-sector-desc">Press Shop, Body Shop, Paint Shop e Final Assembly. Dispositivos, transportadores e ferramentais para a cadeia automotiva completa.</div>
-      </div>
-      <div class="sofir-sector-card">
-        <div class="sofir-sector-header"><span class="sofir-sector-name">⚒️ Siderurgia</span><span class="sofir-sector-icon"></span></div>
-        <div class="sofir-sector-desc">Estruturas metálicas, caldeiradas e usinadas para grandes usinas siderúrgicas. Manutenção e recuperação de equipamentos de alta carga.</div>
-      </div>
-      <div class="sofir-sector-card">
-        <div class="sofir-sector-header"><span class="sofir-sector-name">⛏️ Mineração</span><span class="sofir-sector-icon"></span></div>
-        <div class="sofir-sector-desc">Equipamentos para ambientes severos — britagem, peneiramento e transporte de minérios em escala industrial.</div>
-      </div>
-      <div class="sofir-sector-card">
-        <div class="sofir-sector-header"><span class="sofir-sector-name">🛢️ Óleo e Gás</span><span class="sofir-sector-icon"></span></div>
-        <div class="sofir-sector-desc">Fabricação e manutenção de equipamentos para refinarias e plantas de processamento com alto padrão técnico e normativo.</div>
-      </div>
-      <div class="sofir-sector-card">
-        <div class="sofir-sector-header"><span class="sofir-sector-name">🏗️ Pontes Rolantes</span><span class="sofir-sector-icon"></span></div>
-        <div class="sofir-sector-desc">Projetos, fabricação e manutenção de pontes rolantes e sistemas de movimentação de cargas para plantas industriais.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- LINHA DO TEMPO — GRADE CURRICULAR REAL -->
-<section class="timeline-section" id="timeline">
-  <div class="timeline-header">
-    <div class="section-label light">Jornada do Aluno · Grade Curricular Oficial</div>
-    <h2>10 Semestres · 3.600 Horas · 1 Engenheiro</h2>
-    <p>Clique em cada período para explorar as disciplinas da grade curricular real do IFMG Betim</p>
-  </div>
-  <div class="timeline-controls" id="timelineControls"></div>
-  <div class="timeline-track" id="timelineTrack"></div>
-  <div class="timeline-progress">
-    <span class="progress-label">Progresso do curso</span>
-    <div class="progress-track" id="progressTrack"></div>
-    <span class="progress-total" id="progressTotal">0h / 3.600h</span>
-  </div>
-</section>
-
-<!-- ÁREAS DE ATUAÇÃO -->
+<!-- ÁREAS -->
 <section class="areas" id="areas">
   <div class="areas-header">
-    <div class="section-label light">Mercado de Trabalho</div>
-    <h2>Onde o Engenheiro Mecânico Atua</h2>
-    <p>Setores industriais com forte demanda na Região Metropolitana de Belo Horizonte e no Brasil</p>
+    <div class="section-label light">Atribuições Profissionais · CREA-MG</div>
+    <h2>O que o Engenheiro Mecânico pode fazer?</h2>
+    <p>Campos de atuação técnica reconhecidos pelo CREA — da concepção ao comissionamento industrial</p>
   </div>
   <div class="areas-grid">
-    <div class="area-card">
-      <div class="area-num">01 / 06</div>
-      <div class="area-industry">Automotivo · Fornecedores</div>
-      <span class="area-icon">🚗</span>
-      <h3>Setor Automotivo</h3>
-      <p>Projeto e manutenção de linhas de produção, jigs, fixtures e equipamentos de montagem para montadoras e fornecedores da cadeia automotiva nacional.</p>
+    <div class="area-card"><div class="area-num">01 / 08</div><div class="area-industry">Projeto &amp; Desenvolvimento</div><span class="area-icon">📐</span><h3>Projeto Mecânico</h3><p>Elaboração de projetos, plantas, cálculos e especificações técnicas de sistemas e componentes mecânicos — de elementos de máquinas a estruturas metálicas complexas.</p></div>
+    <div class="area-card"><div class="area-num">02 / 08</div><div class="area-industry">Fabricação &amp; Manufatura</div><span class="area-icon">⚙️</span><h3>Processos de Fabricação</h3><p>Direção e execução de serviços de usinagem, caldeiraria, soldagem, estampagem, fundição e montagem de máquinas e equipamentos industriais de qualquer porte.</p></div>
+    <div class="area-card"><div class="area-num">03 / 08</div><div class="area-industry">Sistemas Térmicos &amp; Fluidos</div><span class="area-icon">🌡️</span><h3>Instalações Industriais &amp; HVAC</h3><p>Projeto e operação de sistemas de vapor, refrigeração industrial, ar comprimido, climatização (HVAC) e utilidades em plantas industriais e comerciais.</p></div>
+    <div class="area-card"><div class="area-num">04 / 08</div><div class="area-industry">Manutenção &amp; Confiabilidade</div><span class="area-icon">🔧</span><h3>Manutenção Industrial</h3><p>Planejamento e execução de manutenção preventiva, preditiva e corretiva de máquinas, equipamentos rotativos e instalações industriais em geral.</p></div>
+    <div class="area-card"><div class="area-num">05 / 08</div><div class="area-industry">Energia &amp; Sustentabilidade</div><span class="area-icon">⚡</span><h3>Eficiência Energética</h3><p>Estudos de eficiência energética, cogeração, geração distribuída e sistemas de conversão de energia com foco em sustentabilidade e redução de emissões industriais.</p></div>
+    <div class="area-card"><div class="area-num">06 / 08</div><div class="area-industry">Automação &amp; Controle</div><span class="area-icon">🤖</span><h3>Automação Industrial</h3><p>Especificação e implantação de sistemas automatizados, CLP/PLC, robótica industrial, instrumentação e sistemas de controle de processos produtivos.</p></div>
+    <div class="area-card"><div class="area-num">07 / 08</div><div class="area-industry">Qualidade &amp; Gestão</div><span class="area-icon">📊</span><h3>Qualidade &amp; Produção</h3><p>Implantação de sistemas ISO 9001, Six Sigma e Lean Manufacturing; gestão da produção, PCP, planejamento industrial e melhoria contínua de processos.</p></div>
+    <div class="area-card"><div class="area-num">08 / 08</div><div class="area-industry">Perícia &amp; Inspeção Técnica</div><span class="area-icon">🔍</span><h3>Perícia, Inspeção &amp; Laudos</h3><p>Elaboração de laudos técnicos, perícias judiciais, inspeção de equipamentos, análise de falhas e avaliações de conformidade conforme ABNT, NR e ASME.</p></div>
+  </div>
+</section>
+
+<!-- EMPREGABILIDADE REGIONAL — seção unificada -->
+<section id="mercado" style="background: white; padding: 4rem 6rem 4rem; position: relative; overflow: hidden;">
+  <div style="position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(to right, var(--green-dark), #7ed9a8, var(--green-dark));"></div>
+
+  <div class="section-label">Empregabilidade Regional</div>
+  <h2 style="font-family:'Bebas Neue',sans-serif;font-size:2.8rem;color:var(--steel);letter-spacing:.5px;margin-bottom:.5rem;">Onde o Graduado em Eng. Mecânica Atua</h2>
+  <p style="font-size:.88rem;color:var(--text-muted);font-weight:300;max-width:700px;line-height:1.8;margin-bottom:2.5rem;">A RMBH é um dos maiores polos industriais do Brasil. Nossos graduados encontram oportunidades em empresas de referência nacional e global — da siderurgia ao agronegócio, da mineração ao setor automotivo.</p>
+
+  <!-- GRID PRINCIPAL: profissões + Sofir -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:stretch;margin-bottom:3rem;">
+
+    <!-- BLOCO: 10 profissões/cargos -->
+    <div>
+      <div style="font-family:'DM Mono',monospace;font-size:.65rem;letter-spacing:2px;text-transform:uppercase;color:var(--green);margin-bottom:1.2rem;">Cargos &amp; Especialidades</div>
+      <div style="display:flex;flex-direction:column;gap:1px;background:var(--cream-dark);border:1px solid var(--cream-dark);">
+        <div style="background:white;padding:.9rem 1.2rem;display:flex;align-items:center;gap:1rem;border-left:3px solid transparent;transition:all .2s;" onmouseover="this.style.borderLeftColor='#005a30';this.style.background='#e8f4ed'" onmouseout="this.style.borderLeftColor='transparent';this.style.background='white'">
+          <span style="font-size:1.3rem;flex-shrink:0">⚙️</span>
+          <div><div style="font-size:.78rem;font-weight:600;color:var(--steel)">Engenheiro de Projetos Mecânicos</div><div style="font-size:.7rem;color:var(--text-muted)">Projetos, cálculos estruturais e especificações técnicas</div></div>
+        </div>
+        <div style="background:white;padding:.9rem 1.2rem;display:flex;align-items:center;gap:1rem;border-left:3px solid transparent;transition:all .2s;" onmouseover="this.style.borderLeftColor='#005a30';this.style.background='#e8f4ed'" onmouseout="this.style.borderLeftColor='transparent';this.style.background='white'">
+          <span style="font-size:1.3rem;flex-shrink:0">🔧</span>
+          <div><div style="font-size:.78rem;font-weight:600;color:var(--steel)">Engenheiro de Manutenção</div><div style="font-size:.7rem;color:var(--text-muted)">Planejamento e controle da manutenção industrial (PCM)</div></div>
+        </div>
+        <div style="background:white;padding:.9rem 1.2rem;display:flex;align-items:center;gap:1rem;border-left:3px solid transparent;transition:all .2s;" onmouseover="this.style.borderLeftColor='#005a30';this.style.background='#e8f4ed'" onmouseout="this.style.borderLeftColor='transparent';this.style.background='white'">
+          <span style="font-size:1.3rem;flex-shrink:0">🏭</span>
+          <div><div style="font-size:.78rem;font-weight:600;color:var(--steel)">Engenheiro de Produção / Industrial</div><div style="font-size:.7rem;color:var(--text-muted)">Gestão de fábrica, PCP, lean manufacturing e qualidade</div></div>
+        </div>
+        <div style="background:white;padding:.9rem 1.2rem;display:flex;align-items:center;gap:1rem;border-left:3px solid transparent;transition:all .2s;" onmouseover="this.style.borderLeftColor='#005a30';this.style.background='#e8f4ed'" onmouseout="this.style.borderLeftColor='transparent';this.style.background='white'">
+          <span style="font-size:1.3rem;flex-shrink:0">🔩</span>
+          <div><div style="font-size:.78rem;font-weight:600;color:var(--steel)">Engenheiro de Caldeiraria &amp; Soldagem</div><div style="font-size:.7rem;color:var(--text-muted)">Fabricação de estruturas metálicas, vasos e tubulações</div></div>
+        </div>
+        <div style="background:white;padding:.9rem 1.2rem;display:flex;align-items:center;gap:1rem;border-left:3px solid transparent;transition:all .2s;" onmouseover="this.style.borderLeftColor='#005a30';this.style.background='#e8f4ed'" onmouseout="this.style.borderLeftColor='transparent';this.style.background='white'">
+          <span style="font-size:1.3rem;flex-shrink:0">📊</span>
+          <div><div style="font-size:.78rem;font-weight:600;color:var(--steel)">Engenheiro de Qualidade</div><div style="font-size:.7rem;color:var(--text-muted)">ISO 9001, Six Sigma, auditorias e inspeção técnica</div></div>
+        </div>
+        <div style="background:white;padding:.9rem 1.2rem;display:flex;align-items:center;gap:1rem;border-left:3px solid transparent;transition:all .2s;" onmouseover="this.style.borderLeftColor='#005a30';this.style.background='#e8f4ed'" onmouseout="this.style.borderLeftColor='transparent';this.style.background='white'">
+          <span style="font-size:1.3rem;flex-shrink:0">🤖</span>
+          <div><div style="font-size:.78rem;font-weight:600;color:var(--steel)">Engenheiro de Automação Industrial</div><div style="font-size:.7rem;color:var(--text-muted)">CLP/PLC, robótica, CAD/CAM e Indústria 4.0</div></div>
+        </div>
+        <div style="background:white;padding:.9rem 1.2rem;display:flex;align-items:center;gap:1rem;border-left:3px solid transparent;transition:all .2s;" onmouseover="this.style.borderLeftColor='#005a30';this.style.background='#e8f4ed'" onmouseout="this.style.borderLeftColor='transparent';this.style.background='white'">
+          <span style="font-size:1.3rem;flex-shrink:0">🌡️</span>
+          <div><div style="font-size:.78rem;font-weight:600;color:var(--steel)">Engenheiro Térmico / de Fluidos</div><div style="font-size:.7rem;color:var(--text-muted)">HVAC, sistemas de vapor, utilidades e eficiência energética</div></div>
+        </div>
+        <div style="background:white;padding:.9rem 1.2rem;display:flex;align-items:center;gap:1rem;border-left:3px solid transparent;transition:all .2s;" onmouseover="this.style.borderLeftColor='#005a30';this.style.background='#e8f4ed'" onmouseout="this.style.borderLeftColor='transparent';this.style.background='white'">
+          <span style="font-size:1.3rem;flex-shrink:0">🔬</span>
+          <div><div style="font-size:.78rem;font-weight:600;color:var(--steel)">Engenheiro de Materiais / Metalurgia</div><div style="font-size:.7rem;color:var(--text-muted)">Seleção, ensaios, análise de falhas e inspeção de materiais</div></div>
+        </div>
+        <div style="background:white;padding:.9rem 1.2rem;display:flex;align-items:center;gap:1rem;border-left:3px solid transparent;transition:all .2s;" onmouseover="this.style.borderLeftColor='#005a30';this.style.background='#e8f4ed'" onmouseout="this.style.borderLeftColor='transparent';this.style.background='white'">
+          <span style="font-size:1.3rem;flex-shrink:0">🗂️</span>
+          <div><div style="font-size:.78rem;font-weight:600;color:var(--steel)">Gerente / Coordenador de Projetos</div><div style="font-size:.7rem;color:var(--text-muted)">Gestão de escopo, prazo, custo e contratos industriais</div></div>
+        </div>
+        <div style="background:white;padding:.9rem 1.2rem;display:flex;align-items:center;gap:1rem;border-left:3px solid transparent;transition:all .2s;" onmouseover="this.style.borderLeftColor='#005a30';this.style.background='#e8f4ed'" onmouseout="this.style.borderLeftColor='transparent';this.style.background='white'">
+          <span style="font-size:1.3rem;flex-shrink:0">💼</span>
+          <div><div style="font-size:.78rem;font-weight:600;color:var(--steel)">Consultor / Engenheiro Comercial</div><div style="font-size:.7rem;color:var(--text-muted)">Vendas técnicas, pós-venda industrial e desenvolvimento de negócios</div></div>
+        </div>
+      </div>
     </div>
-    <div class="area-card">
-      <div class="area-num">02 / 06</div>
-      <div class="area-industry">Siderurgia · Metalurgia</div>
-      <span class="area-icon">⚒️</span>
-      <h3>Siderurgia & Metalurgia</h3>
-      <p>Fabricação e manutenção de estruturas metálicas, caldeiraria e equipamentos pesados para usinas siderúrgicas de grande porte.</p>
+
+    <!-- BLOCO SOFIR DESTAQUE -->
+    <div>
+      <div style="font-family:'DM Mono',monospace;font-size:.65rem;letter-spacing:2px;text-transform:uppercase;color:var(--green);margin-bottom:1.2rem;">Empresa Parceira em Destaque</div>
+      <div style="background:var(--green-dark);border:1px solid rgba(126,217,168,0.15);overflow:hidden;">
+        <!-- header sofir -->
+        <div style="background:linear-gradient(135deg,#003d22,#00491a);padding:2rem 2rem 1.5rem;position:relative;overflow:hidden;">
+          <div style="position:absolute;top:-40px;right:-40px;width:180px;height:180px;border-radius:50%;background:radial-gradient(circle,rgba(126,217,168,0.1),transparent 70%);"></div>
+          <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(126,217,168,0.1);border:1px solid rgba(126,217,168,0.3);color:#7ed9a8;font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:2px;text-transform:uppercase;padding:5px 10px;border-radius:2px;margin-bottom:1.2rem;">📌 Referência Regional · ISO 9001:2015</div>
+          <!-- Logo tipográfica Sofir -->
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:.8rem;">
+            <div style="display:flex;flex-direction:column;gap:3px;flex-shrink:0;">
+              <div style="display:flex;gap:4px;align-items:flex-end;">
+                <div style="width:5px;height:32px;background:#7ed9a8;border-radius:1px;"></div>
+                <div style="width:5px;height:26px;background:#7ed9a8;opacity:.65;border-radius:1px;"></div>
+                <div style="width:5px;height:18px;background:#7ed9a8;opacity:.35;border-radius:1px;"></div>
+              </div>
+            </div>
+            <div>
+              <div style="font-family:'Bebas Neue',sans-serif;font-size:2.2rem;color:white;letter-spacing:4px;line-height:1;">SOFIR</div>
+              <div style="font-family:'DM Mono',monospace;font-size:.62rem;color:#7ed9a8;letter-spacing:5px;margin-top:1px;">DO BRASIL</div>
+            </div>
+          </div>
+          <div style="font-size:.72rem;color:rgba(255,255,255,0.4);font-weight:300;line-height:1.6;">Fabricação · Montagem · Recuperação<br>de Máquinas e Estruturas Industriais — Contagem / MG</div>
+        </div>
+        <!-- stats -->
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(126,217,168,0.08);">
+          <div style="background:rgba(0,0,0,0.2);padding:1rem;text-align:center;">
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:1.7rem;color:#7ed9a8;line-height:1;">2004</div>
+            <div style="font-family:'DM Mono',monospace;font-size:.55rem;color:rgba(255,255,255,0.3);letter-spacing:1px;text-transform:uppercase;margin-top:3px;">Fundação</div>
+          </div>
+          <div style="background:rgba(0,0,0,0.2);padding:1rem;text-align:center;">
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:1.7rem;color:#7ed9a8;line-height:1;">250t</div>
+            <div style="font-family:'DM Mono',monospace;font-size:.55rem;color:rgba(255,255,255,0.3);letter-spacing:1px;text-transform:uppercase;margin-top:3px;">Cap. / Mês</div>
+          </div>
+          <div style="background:rgba(0,0,0,0.2);padding:1rem;text-align:center;">
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:1.7rem;color:#7ed9a8;line-height:1;">5+</div>
+            <div style="font-family:'DM Mono',monospace;font-size:.55rem;color:rgba(255,255,255,0.3);letter-spacing:1px;text-transform:uppercase;margin-top:3px;">Setores</div>
+          </div>
+        </div>
+        <!-- desc + clientes -->
+        <div style="padding:1.5rem 2rem;">
+          <p style="font-size:.78rem;color:rgba(255,255,255,0.55);font-weight:300;line-height:1.8;margin-bottom:1rem;">Especializada em estruturas metálicas, caldeiradas e usinadas para os setores automotivo, siderúrgico, mineração, óleo &amp; gás e bens de capital. Uma das principais empregadoras de engenheiros mecânicos na RMBH.</p>
+          <div style="font-family:'DM Mono',monospace;font-size:.58rem;color:rgba(255,255,255,0.25);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:.5rem;">Clientes</div>
+          <div style="display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1.2rem;">
+            <span style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);padding:3px 8px;border-radius:2px;font-family:'DM Mono',monospace;font-size:.58rem;color:rgba(255,255,255,0.38);">ArcelorMittal</span>
+            <span style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);padding:3px 8px;border-radius:2px;font-family:'DM Mono',monospace;font-size:.58rem;color:rgba(255,255,255,0.38);">Aperam</span>
+            <span style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);padding:3px 8px;border-radius:2px;font-family:'DM Mono',monospace;font-size:.58rem;color:rgba(255,255,255,0.38);">Alstom</span>
+            <span style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);padding:3px 8px;border-radius:2px;font-family:'DM Mono',monospace;font-size:.58rem;color:rgba(255,255,255,0.38);">BYD</span>
+            <span style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);padding:3px 8px;border-radius:2px;font-family:'DM Mono',monospace;font-size:.58rem;color:rgba(255,255,255,0.38);">Cargill</span>
+          </div>
+          <a href="https://www.sofirdobrasil.com.br" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;background:rgba(126,217,168,0.12);border:1px solid rgba(126,217,168,0.3);color:#7ed9a8;text-decoration:none;font-size:.7rem;font-weight:500;letter-spacing:1px;text-transform:uppercase;padding:10px 16px;border-radius:2px;transition:background .2s;" onmouseover="this.style.background='rgba(126,217,168,0.22)'" onmouseout="this.style.background='rgba(126,217,168,0.12)'">🔗 Visitar sofirdobrasil.com.br →</a>
+        </div>
+      </div>
     </div>
-    <div class="area-card">
-      <div class="area-num">03 / 06</div>
-      <div class="area-industry">Mineração · Extração</div>
-      <span class="area-icon">⛏️</span>
-      <h3>Mineração</h3>
-      <p>Engenharia de manutenção e projetos de equipamentos para extração, beneficiamento e transporte de minérios em larga escala.</p>
+  </div>
+
+  <!-- SETORES + outras empresas -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:stretch;">
+
+    <!-- Setores de atuação -->
+    <div>
+      <div style="font-family:'DM Mono',monospace;font-size:.65rem;letter-spacing:2px;text-transform:uppercase;color:var(--green);margin-bottom:1.2rem;">Setores Industriais</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--cream-dark);border:1px solid var(--cream-dark);">
+        <div style="background:var(--cream);padding:.9rem 1rem;border-top:2px solid transparent;transition:all .2s;" onmouseover="this.style.borderTopColor='#005a30';this.style.background='white'" onmouseout="this.style.borderTopColor='transparent';this.style.background='var(--cream)'"><div style="font-size:.7rem;font-weight:600;color:var(--steel)">⚒️ Siderurgia</div></div>
+        <div style="background:var(--cream);padding:.9rem 1rem;border-top:2px solid transparent;transition:all .2s;" onmouseover="this.style.borderTopColor='#005a30';this.style.background='white'" onmouseout="this.style.borderTopColor='transparent';this.style.background='var(--cream)'"><div style="font-size:.7rem;font-weight:600;color:var(--steel)">⛏️ Mineração</div></div>
+        <div style="background:var(--cream);padding:.9rem 1rem;border-top:2px solid transparent;transition:all .2s;" onmouseover="this.style.borderTopColor='#005a30';this.style.background='white'" onmouseout="this.style.borderTopColor='transparent';this.style.background='var(--cream)'"><div style="font-size:.7rem;font-weight:600;color:var(--steel)">🛢️ Petróleo &amp; Gás</div></div>
+        <div style="background:var(--cream);padding:.9rem 1rem;border-top:2px solid transparent;transition:all .2s;" onmouseover="this.style.borderTopColor='#005a30';this.style.background='white'" onmouseout="this.style.borderTopColor='transparent';this.style.background='var(--cream)'"><div style="font-size:.7rem;font-weight:600;color:var(--steel)">🚗 Automotivo</div></div>
+        <div style="background:var(--cream);padding:.9rem 1rem;border-top:2px solid transparent;transition:all .2s;" onmouseover="this.style.borderTopColor='#005a30';this.style.background='white'" onmouseout="this.style.borderTopColor='transparent';this.style.background='var(--cream)'"><div style="font-size:.7rem;font-weight:600;color:var(--steel)">⚡ Energia</div></div>
+        <div style="background:var(--cream);padding:.9rem 1rem;border-top:2px solid transparent;transition:all .2s;" onmouseover="this.style.borderTopColor='#005a30';this.style.background='white'" onmouseout="this.style.borderTopColor='transparent';this.style.background='var(--cream)'"><div style="font-size:.7rem;font-weight:600;color:var(--steel)">🌾 Agronegócio</div></div>
+        <div style="background:var(--cream);padding:.9rem 1rem;border-top:2px solid transparent;transition:all .2s;" onmouseover="this.style.borderTopColor='#005a30';this.style.background='white'" onmouseout="this.style.borderTopColor='transparent';this.style.background='var(--cream)'"><div style="font-size:.7rem;font-weight:600;color:var(--steel)">🏗️ Ind. Pesada</div></div>
+        <div style="background:var(--cream);padding:.9rem 1rem;border-top:2px solid transparent;transition:all .2s;" onmouseover="this.style.borderTopColor='#005a30';this.style.background='white'" onmouseout="this.style.borderTopColor='transparent';this.style.background='var(--cream)'"><div style="font-size:.7rem;font-weight:600;color:var(--steel)">✈️ Aeroespacial</div></div>
+        <div style="background:var(--cream);padding:.9rem 1rem;border-top:2px solid transparent;transition:all .2s;" onmouseover="this.style.borderTopColor='#005a30';this.style.background='white'" onmouseout="this.style.borderTopColor='transparent';this.style.background='var(--cream)'"><div style="font-size:.7rem;font-weight:600;color:var(--steel)">🤖 Automação</div></div>
+      </div>
     </div>
-    <div class="area-card">
-      <div class="area-num">04 / 06</div>
-      <div class="area-industry">Energia · Óleo e Gás</div>
-      <span class="area-icon">🛢️</span>
-      <h3>Energia & Óleo e Gás</h3>
-      <p>Projetos e manutenção de equipamentos para refinarias, plantas energéticas e sistemas termodinâmicos de alta performance.</p>
+
+    <!-- Grandes empregadoras -->
+    <div>
+      <div style="font-family:'DM Mono',monospace;font-size:.65rem;letter-spacing:2px;text-transform:uppercase;color:var(--green);margin-bottom:1.2rem;">Grandes Empregadoras do Setor</div>
+      <div style="display:flex;flex-direction:column;gap:1px;background:var(--cream-dark);border:1px solid var(--cream-dark);">
+        <div style="background:white;padding:.85rem 1.2rem;display:grid;grid-template-columns:1fr auto;align-items:center;gap:1rem;border-left:3px solid transparent;transition:all .2s;" onmouseover="this.style.borderLeftColor='#005a30';this.style.background='#e8f4ed'" onmouseout="this.style.borderLeftColor='transparent';this.style.background='white'">
+          <div><div style="font-size:.77rem;font-weight:600;color:var(--steel)">Sofir do Brasil</div><div style="font-size:.67rem;color:var(--text-muted)">Fabricação industrial · Contagem/MG</div></div>
+          <span style="font-family:'DM Mono',monospace;font-size:.58rem;background:#e8f4ed;border:1px solid rgba(0,90,48,.2);color:#005a30;padding:3px 8px;border-radius:2px;">Destaque</span>
+        </div>
+        <div style="background:white;padding:.85rem 1.2rem;display:grid;grid-template-columns:1fr auto;align-items:center;gap:1rem;border-left:3px solid transparent;transition:all .2s;" onmouseover="this.style.borderLeftColor='#005a30';this.style.background='#e8f4ed'" onmouseout="this.style.borderLeftColor='transparent';this.style.background='white'">
+          <div><div style="font-size:.77rem;font-weight:600;color:var(--steel)">ArcelorMittal</div><div style="font-size:.67rem;color:var(--text-muted)">Siderurgia · maior produtora de aço do mundo</div></div>
+          <span style="font-family:'DM Mono',monospace;font-size:.58rem;background:var(--cream);border:1px solid var(--cream-dark);color:var(--text-muted);padding:3px 8px;border-radius:2px;">Siderurgia</span>
+        </div>
+        <div style="background:white;padding:.85rem 1.2rem;display:grid;grid-template-columns:1fr auto;align-items:center;gap:1rem;border-left:3px solid transparent;transition:all .2s;" onmouseover="this.style.borderLeftColor='#005a30';this.style.background='#e8f4ed'" onmouseout="this.style.borderLeftColor='transparent';this.style.background='white'">
+          <div><div style="font-size:.77rem;font-weight:600;color:var(--steel)">Vale</div><div style="font-size:.67rem;color:var(--text-muted)">Mineração · maior mineradora do Brasil</div></div>
+          <span style="font-family:'DM Mono',monospace;font-size:.58rem;background:var(--cream);border:1px solid var(--cream-dark);color:var(--text-muted);padding:3px 8px;border-radius:2px;">Mineração</span>
+        </div>
+        <div style="background:white;padding:.85rem 1.2rem;display:grid;grid-template-columns:1fr auto;align-items:center;gap:1rem;border-left:3px solid transparent;transition:all .2s;" onmouseover="this.style.borderLeftColor='#005a30';this.style.background='#e8f4ed'" onmouseout="this.style.borderLeftColor='transparent';this.style.background='white'">
+          <div><div style="font-size:.77rem;font-weight:600;color:var(--steel)">Petrobras</div><div style="font-size:.67rem;color:var(--text-muted)">Petróleo &amp; gás · maior empresa do Brasil</div></div>
+          <span style="font-family:'DM Mono',monospace;font-size:.58rem;background:var(--cream);border:1px solid var(--cream-dark);color:var(--text-muted);padding:3px 8px;border-radius:2px;">Óleo &amp; Gás</span>
+        </div>
+        <div style="background:white;padding:.85rem 1.2rem;display:grid;grid-template-columns:1fr auto;align-items:center;gap:1rem;border-left:3px solid transparent;transition:all .2s;" onmouseover="this.style.borderLeftColor='#005a30';this.style.background='#e8f4ed'" onmouseout="this.style.borderLeftColor='transparent';this.style.background='white'">
+          <div><div style="font-size:.77rem;font-weight:600;color:var(--steel)">Vallourec</div><div style="font-size:.67rem;color:var(--text-muted)">Tubos de aço · presente em Belo Horizonte</div></div>
+          <span style="font-family:'DM Mono',monospace;font-size:.58rem;background:var(--cream);border:1px solid var(--cream-dark);color:var(--text-muted);padding:3px 8px;border-radius:2px;">Metalurgia</span>
+        </div>
+        <div style="background:white;padding:.85rem 1.2rem;display:grid;grid-template-columns:1fr auto;align-items:center;gap:1rem;border-left:3px solid transparent;transition:all .2s;" onmouseover="this.style.borderLeftColor='#005a30';this.style.background='#e8f4ed'" onmouseout="this.style.borderLeftColor='transparent';this.style.background='white'">
+          <div><div style="font-size:.77rem;font-weight:600;color:var(--steel)">Aperam</div><div style="font-size:.67rem;color:var(--text-muted)">Aços especiais · unidade em Timóteo/MG</div></div>
+          <span style="font-family:'DM Mono',monospace;font-size:.58rem;background:var(--cream);border:1px solid var(--cream-dark);color:var(--text-muted);padding:3px 8px;border-radius:2px;">Siderurgia</span>
+        </div>
+        <div style="background:white;padding:.85rem 1.2rem;display:grid;grid-template-columns:1fr auto;align-items:center;gap:1rem;border-left:3px solid transparent;transition:all .2s;" onmouseover="this.style.borderLeftColor='#005a30';this.style.background='#e8f4ed'" onmouseout="this.style.borderLeftColor='transparent';this.style.background='white'">
+          <div><div style="font-size:.77rem;font-weight:600;color:var(--steel)">Fiat / Stellantis</div><div style="font-size:.67rem;color:var(--text-muted)">Automotivo · maior fábrica de veículos do Brasil</div></div>
+          <span style="font-family:'DM Mono',monospace;font-size:.58rem;background:var(--cream);border:1px solid var(--cream-dark);color:var(--text-muted);padding:3px 8px;border-radius:2px;">Automotivo</span>
+        </div>
+      </div>
     </div>
-    <div class="area-card">
-      <div class="area-num">05 / 06</div>
-      <div class="area-industry">Automação · Indústria 4.0</div>
-      <span class="area-icon">🤖</span>
-      <h3>Automação & Robótica</h3>
-      <p>CLP, CNC, robótica industrial, mecatrônica e integração de sistemas automatizados — aplicados em linhas de produção modernas.</p>
+
+  </div>
+</section>
+
+<!-- MERCADO REMOVIDO — UNIFICADO COM EMPREGABILIDADE ACIMA -->
+<section class="grade" id="grade">
+  <div class="grade-header">
+    <div class="section-label">Jornada Acadêmica</div>
+    <h2>Grade Curricular Completa</h2>
+    <p>10 semestres · 3.600h totais · Bacharelado em Engenharia Mecânica — IFMG Campus Betim</p>
+  </div>
+
+  <div class="grade-progress">
+    <div class="grade-progress-bar"><div class="grade-progress-fill" id="progressFill"></div></div>
+    <div class="grade-progress-label" id="progressLabel">Clique em um período para explorar</div>
+  </div>
+
+  <div class="grade-filters">
+    <button class="grade-filter-btn active" onclick="filterPeriod('all',this)">Todos</button>
+    <button class="grade-filter-btn" onclick="filterPeriod(1,this)">1º Sem</button>
+    <button class="grade-filter-btn" onclick="filterPeriod(2,this)">2º Sem</button>
+    <button class="grade-filter-btn" onclick="filterPeriod(3,this)">3º Sem</button>
+    <button class="grade-filter-btn" onclick="filterPeriod(4,this)">4º Sem</button>
+    <button class="grade-filter-btn" onclick="filterPeriod(5,this)">5º Sem</button>
+    <button class="grade-filter-btn" onclick="filterPeriod(6,this)">6º Sem</button>
+    <button class="grade-filter-btn" onclick="filterPeriod(7,this)">7º Sem</button>
+    <button class="grade-filter-btn" onclick="filterPeriod(8,this)">8º Sem</button>
+    <button class="grade-filter-btn" onclick="filterPeriod(9,this)">9º Sem</button>
+    <button class="grade-filter-btn" onclick="filterPeriod(10,this)">10º Sem</button>
+  </div>
+
+  <div class="timeline" id="gradeTimeline">
+
+    <div class="timeline-period" data-period="1">
+      <div class="timeline-period-header" onclick="togglePeriod(this)">
+        <div class="timeline-period-num">1</div>
+        <div class="timeline-period-info"><div class="timeline-period-title">Fundamentos da Engenharia</div><div class="timeline-period-meta">6 disciplinas · Bases científicas e introdução ao curso</div></div>
+        <div class="timeline-period-ch">285h</div><div class="timeline-period-toggle">▼</div>
+      </div>
+      <div class="timeline-disciplines">
+        <div class="discipline-row"><div><div class="discipline-code">BTBEMEC.015</div><div class="discipline-name">Introdução à Sociologia</div></div><div class="discipline-ch-badge">30h</div></div>
+        <div class="discipline-row"><div><div class="discipline-code">BTBEMEC.021</div><div class="discipline-name">Desenho Técnico I</div></div><div class="discipline-ch-badge">60h</div></div>
+        <div class="discipline-row"><div><div class="discipline-code">BTBEMEC.109</div><div class="discipline-name">Ciência dos Materiais I</div></div><div class="discipline-ch-badge">30h</div></div>
+        <div class="discipline-row"><div><div class="discipline-code">BTBEMEC.110</div><div class="discipline-name">Introdução à Engenharia</div></div><div class="discipline-ch-badge">30h</div></div>
+        <div class="discipline-row"><div><div class="discipline-code">BTBEMEC.111</div><div class="discipline-name">Cálculo I</div></div><div class="discipline-ch-badge">75h</div></div>
+        <div class="discipline-row"><div><div class="discipline-code">BTBEMEC.112</div><div class="discipline-name">Introdução à Ciência da Computação I</div></div><div class="discipline-ch-badge">60h</div></div>
+      </div>
     </div>
-    <div class="area-card">
-      <div class="area-num">06 / 06</div>
-      <div class="area-industry">P&D · Consultoria</div>
-      <span class="area-icon">💡</span>
-      <h3>Pesquisa & Consultoria</h3>
-      <p>Centros de P&D, consultorias de engenharia, startups de tecnologia industrial, docência universitária e empreendedorismo tecnológico.</p>
+
+    <div class="timeline-period" data-period="2">
+      <div class="timeline-period-header" onclick="togglePeriod(this)">
+        <div class="timeline-period-num">2</div>
+        <div class="timeline-period-info"><div class="timeline-period-title">Ciências Exatas &amp; Representação</div><div class="timeline-period-meta">6 disciplinas · Física, cálculo, química e álgebra linear</div></div>
+        <div class="timeline-period-ch">300h</div><div class="timeline-period-toggle">▼</div>
+      </div>
+      <div class="timeline-disciplines">
+        <div class="discipline-row"><div><div class="discipline-code">BTBEMEC.004</div><div class="discipline-name">Química Geral</div></div><div class="discipline-ch-badge">60h</div></div>
+        <div class="discipline-row"><div><div class="discipline-code">BTBEMEC.010</div><div class="discipline-name">Cálculo II</div></div><div class="discipline-ch-badge">60h</div></div>
+        <div class="discipline-row"><div><div class="discipline-code">BTBEMEC.012</div><div class="discipline-name">Física I</div></div><div class="discipline-ch-badge">60h</div></div>
+        <div class="discipline-row"><div><div class="discipline-code">BTBEMEC.018</div><div class="discipline-name">Ciência dos Materiais II</div></div><div class="discipline-ch-badge">30h</div></div>
+        <div class="discipline-row"><div><div class="discipline-code">BTBEMEC.026</div><div class="discipline-name">Desenho Técnico II — DAC</div></div><div class="discipline-ch-badge">30h</div></div>
+        <div class="discipline-row"><div><div class="discipline-code">BTBEMEC.113</div><div class="discipline-name">Geometria Analítica e Álgebra Linear</div></div><div class="discipline-ch-badge">60h</div></div>
+      </div>
     </div>
+
+    <div class="timeline-period" data-period="3">
+      <div class="timeline-period-header" onclick="togglePeriod(this)">
+        <div class="timeline-period-num">3</div>
+        <div class="timeline-period-info"><div class="timeline-period-title">Mecânica Aplicada &amp; Laboratórios</div><div class="timeline-period-meta">7 disciplinas · Modelamento 3D, física experimental e materiais</div></div>
+        <div class="timeline-period-ch">300h</div><div class="timeline-period-toggle">▼</div>
+      </div>
+      <div class="timeline-disciplines">
+        <div class="discipline-row"><div><div class="discipline-code">BTBEMEC.008</div><div class="discipline-name">Mecânica Geral</div></div><div class="discipline-ch-badge">30h</div></div>
+        <div class="discipline-row"><div><div class="discipline-code">BTBEMEC.016</div><div class="discipline-name">Cálculo III</div></div><div class="discipline-ch-badge">60h</div></div>
+        <div class="discipline-row"><div><div class="discipline-code">BTBEMEC.033</div><div class="discipline-name">Desenho Técnico III — Modelamento</div></div><div class="discipline-ch-badge">60h</div></div>
+        <div class="discipline-row"><div><div class="discipline-code">BTBEMEC.114</div><div class="discipline-name">Laboratório de Química Geral</div></div><div class="discipline-ch-badge">30h</div></div>
+        <div class="discipline-row"><div><div class="discipline-code">BTBEMEC.115</div><div class="discipline-name">Física II</div></div><div class="discipline-ch-badge">60h</div></div>
+        <div class="discipline-row"><div><div class="discipline-code">BTBEMEC.116</div><div class="discipline-name">Laboratório de Física I</div></div><div class="discipline-ch-badge">30h</div></div>
+        <div class="discipline-row"><div><div class="discipline-code">BTBEMEC.136</div><div class="discipline-name">Ciência dos Materiais III</div></div><div class="discipline-ch-badge">30h</div></div>
+      </div>
+    </div>
+
+    <div class="timeline-period" data-period="4">
+      <div class="timeline-period-header" onclick="togglePeriod(this)">
+        <div class="timeline-period-num">4</div>
+        <div class="timeline-period-info"><div class="timeline-period-title">Sistemas Mecânicos &amp; Fluidos</div><div class="timeline-period-meta">7 disciplinas · Sólidos, fluidos, equações diferenciais e metrologia</div></div>
+        <div class="timeline-period-ch">300h</div><div class="timeline-period-toggle">▼</div>
+      </div>
+      <div class="timeline-disciplines">
+        <div class="discipline-row"><div><div class="discipline-code">BTBEMEC.013</div><div class="discipline-name">Metrologia</div></div><div class="discipline-ch-badge">30h</div></div>
+        <div class="discipline-row"><div><div class="discipline-code">BTBEMEC.022</div><div class="discipline-name">Física III</div></div><div class="discipline-ch-badge">30h</div></div>
+        <div class="discipline-row"><div><div class="discipline-code">BTBEMEC.025</div><div class="discipline-name">Mecânica dos Sólidos I</div></div><div class="discipline-ch-badge">60h</div></div>
+        <div class="discipline-row"><div><div class="discipline-code">BTBEMEC.028</div><div class="discipline-name">Introdução à Administração</div></div><div class="discipline-ch-badge">30h</div></div>
+        <div class="discipline-row"><div><div class="discipline-code">BTBEMEC.031</div><div class="discipline-name">Mecânica dos Fluidos</div></div><div class="discipline-ch-badge">60h</div></div>
+        <div class="discipline-row"><div><div class="discipline-code">BTBEMEC.117</div><div class="discipline-name">Laboratório de Física II</div></div><div class="discipline-ch-badge">30h</div></div>
+        <div class="discipline-row"><div><div class="discipline-code">BTBEMEC.137</div><div class="discipline-name">Equações Diferenciais Ordinárias</div></div><div class="discipline-ch-badge">60h</div></div>
+      </div>
+    </div>
+
+    <div class="timeline-period" data-period="5">
+      <div class="timeline-period-header" onclick="togglePeriod(this)">
+        <div class="timeline-period-num">5</div>
+        <div class="timeline-period-info"><div class="timeline-period-title">Fabricação &amp; Sistemas Térmicos</div><div class="timeline-period-meta">6 disciplinas · Termodinâmica, hidropneumática e eletrotécnica</div></div>
+        <div class="timeline-period-ch">300h</div><div class="timeline-period-toggle">▼</div>
+      </div>
+      <div class="timeline-disciplines">
+        <div class="discipline-row"><div><div class="discipline-code">BTBEMEC.029</div><div class="discipline-name">Processos de Fabricação I</div></div><div class="discipline-ch-badge">30h</div></div>
+        <div class="discipline-row"><div><div class="discipline-code">BTBEMEC.030</div><div class="discipline-name">Mecânica dos Sólidos II</div></div><div class="discipline-ch-badge">60h</div></div>
+        <div class="discipline-row"><div><div class="discipline-code">BTBEMEC.032</div><div class="discipline-name">Probabilidade e Estatística</div></div><div class="discipline-ch-badge">30h</div></div>
+        <div class="discipline-row"><div><div class="discipline-code">BTBEMEC.041</div><div class="discipline-name">Sistemas Hidropneumáticos</div></div><div class="discipline-ch-badge">60h</div></div>
+        <div class="discipline-row"><div><div class="discipline-code">BTBEMEC.118</div><div class="discipline-name">Eletrotécnica</div></div><div class="discipline-ch-badge">60h</div></div>
+        <div class="discipline-row"><div><div class="discipline-code">BTBEMEC.119</div><div class="discipline-name">Termodinâmica</div></div><div class="discipline-ch-badge">60h</div></div>
+      </div>
+    </div>
+
+    <div class="timeline-period" data-period="6">
+      <div class="timeline-period-header" onclick="togglePeriod(this)">
+        <div class="timeline-period-num">6</div>
+        <div class="timeline-period-info"><div class="timeline-period-title">Projeto Mecânico &amp; Manufatura</div><div class="timeline-period-meta">7 disciplinas · Elementos de máquinas, soldagem e métodos numéricos</div></div>
+        <div class="timeline-period-ch">300h</div><div class="timeline-period-toggle">▼</div>
+      </div>
+      <div class="timeline-disciplines">
+        <div class="discipline-row"><div><div class="discipline-code">BTBEMEC.019</div><div class="discipline-name">Metodologia Científica e Tecnológica</div></div><div class="discipline-ch-badge">30h</div></div>
+        <div class="discipline-row"><div><div class="discipline-code">BTBEMEC.039</div><div class="discipline-name">Mecânica dos Sólidos III</div></div><div class="discipline-ch-badge">60h</div></div>
+        <div class="discipline-row"><div><div class="discipline-code">BTBEMEC.120</div><div class="discipline-name">Transferência de Calor</div></div><div class="discipline-ch-badge">60h</div></div>
+        <div class="discipline-row"><div><div class="discipline-code">BTBEMEC.121</div><div class="discipline-name">Métodos Numéricos para Engenharia</div></div><div class="discipline-ch-badge">45h</div></div>
+        <div class="discipline-row"><div><div class="discipline-code">BTBEMEC.122</div><div class="discipline-name">Processos de Fabricação III — Soldagem Teórica</div></div><div class="discipline-ch-badge">30h</div></div>
+        <div class="discipline-row"><div><div class="discipline-code">BTBEMEC.123</div><div class="discipline-name">Elementos de Máquinas</div></div><div class="discipline-ch-badge">45h</div></div>
+        <div class="discipline-row"><div><div class="discipline-code">BTBEMEC.124</div><div class="discipline-name">Processos de Fabricação II — Usinagem</div></div><div class="discipline-ch-badge">30h</div></div>
+      </div>
+    </div>
+
+    <div class="timeline-period" data-period="7">
+      <div class="timeline-period-header" onclick="togglePeriod(this)">
+        <div class="timeline-period-num">7</div>
+        <div class="timeline-period-info"><div class="timeline-period-title">Sistemas Térmicos &amp; Gestão</div><div class="timeline-period-meta">7 disciplinas · Motores, soldagem prática, sustentabilidade e empreendedorismo</div></div>
+        <div class="timeline-period-ch">300h</div><div class="timeline-period-toggle">▼</div>
+      </div>
+      <div class="timeline-disciplines">
+        <div class="discipline-row"><div><div class="discipline-code">BTBEMEC.040</div><div class="discipline-name">Ensaios Tecnológicos de Materiais</div></div><div class="discipline-ch-badge">60h</div></div>
+        <div class="discipline-row"><div><div class="discipline-code">BTBEMEC.056</div><div class="discipline-name">Motores de Combustão</div></div><div class="discipline-ch-badge">60h</div></div>
+        <div class="discipline-row"><div><div class="discipline-code">BTBEMEC.125</div><div class="discipline-name">Sistemas Térmicos — Máquinas de Calor e Fluxo</div></div><div class="discipline-ch-badge">45h</div></div>
+        <div class="discipline-row"><div><div class="discipline-code">BTBEMEC.126</div><div class="discipline-name">Processos de Fabricação III — Soldagem Prática</div></div><div class="discipline-ch-badge">30h</div></div>
+        <div class="discipline-row"><div><div class="discipline-code">BTBEMEC.127</div><div class="discipline-name">Processos de Fabricação IV — Lab. Usinagem</div></div><div class="discipline-ch-badge">30h</div></div>
+        <div class="discipline-row"><div><div class="discipline-code">BTBEMEC.128</div><div class="discipline-name">Sustentabilidade e Tecnologia Ambiental</div></div><div class="discipline-ch-badge">30h</div></div>
+        <div class="discipline-row"><div><div class="discipline-code">BTBEMEC.129</div><div class="discipline-name">Gestão Empresarial e Empreendedorismo</div></div><div class="discipline-ch-badge">45h</div></div>
+      </div>
+    </div>
+
+    <div class="timeline-period" data-period="8">
+      <div class="timeline-period-header" onclick="togglePeriod(this)">
+        <div class="timeline-period-num">8</div>
+        <div class="timeline-period-info"><div class="timeline-period-title">Automação, Ferramental &amp; TCC I</div><div class="timeline-period-meta">6 disciplinas · CLP, instrumentação, projeto de ferramental e ética</div></div>
+        <div class="timeline-period-ch">210h</div><div class="timeline-period-toggle">▼</div>
+      </div>
+      <div class="timeline-disciplines">
+        <div class="discipline-row"><div><div class="discipline-code">BTBEMEC.043</div><div class="discipline-name">Dinâmica das Máquinas — Mecanismos e Vibrações</div></div><div class="discipline-ch-badge">30h</div></div>
+        <div class="discipline-row"><div><div class="discipline-code">BTBEMEC.044</div><div class="discipline-name">Projeto de Ferramental I — Estampos</div></div><div class="discipline-ch-badge">60h</div></div>
+        <div class="discipline-row"><div><div class="discipline-code">BTBEMEC.048</div><div class="discipline-name">Instrumentação Industrial</div></div><div class="discipline-ch-badge">30h</div></div>
+        <div class="discipline-row"><div><div class="discipline-code">BTBEMEC.054</div><div class="discipline-name">CLP — Controlador Lógico Programável</div></div><div class="discipline-ch-badge">30h</div></div>
+        <div class="discipline-row"><div><div class="discipline-code">BTBEMEC.058</div><div class="discipline-name">TCC I</div></div><div class="discipline-ch-badge">30h</div></div>
+        <div class="discipline-row"><div><div class="discipline-code">BTBEMEC.060</div><div class="discipline-name">Ética, Profissão e Cidadania</div></div><div class="discipline-ch-badge">30h</div></div>
+      </div>
+    </div>
+
+    <div class="timeline-period" data-period="9">
+      <div class="timeline-period-header" onclick="togglePeriod(this)">
+        <div class="timeline-period-num">9</div>
+        <div class="timeline-period-info"><div class="timeline-period-title">Projetos Avançados &amp; TCC II</div><div class="timeline-period-meta">6 disciplinas · Elementos finitos, injeção de termoplásticos e eng. econômica</div></div>
+        <div class="timeline-period-ch">240h</div><div class="timeline-period-toggle">▼</div>
+      </div>
+      <div class="timeline-disciplines">
+        <div class="discipline-row"><div><div class="discipline-code">BTBEMEC.051</div><div class="discipline-name">Gerenciamento de Projetos I</div></div><div class="discipline-ch-badge">30h</div></div>
+        <div class="discipline-row"><div><div class="discipline-code">BTBEMEC.053</div><div class="discipline-name">Projeto de Ferramental II — Injeção de Termoplásticos</div></div><div class="discipline-ch-badge">60h</div></div>
+        <div class="discipline-row"><div><div class="discipline-code">BTBEMEC.061</div><div class="discipline-name">Instalações Industriais</div></div><div class="discipline-ch-badge">30h</div></div>
+        <div class="discipline-row"><div><div class="discipline-code">BTBEMEC.131</div><div class="discipline-name">Elementos Finitos</div></div><div class="discipline-ch-badge">60h</div></div>
+        <div class="discipline-row"><div><div class="discipline-code">BTBEMEC.138</div><div class="discipline-name">Engenharia Econômica</div></div><div class="discipline-ch-badge">30h</div></div>
+        <div class="discipline-row"><div><div class="discipline-code">BTBEMEC.2.592.254</div><div class="discipline-name">TCC II</div></div><div class="discipline-ch-badge">30h</div></div>
+      </div>
+    </div>
+
+    <div class="timeline-period" data-period="10">
+      <div class="timeline-period-header" onclick="togglePeriod(this)">
+        <div class="timeline-period-num">10</div>
+        <div class="timeline-period-info"><div class="timeline-period-title">Formação Profissional Completa</div><div class="timeline-period-meta">7 disciplinas · CNC, robótica, qualidade, segurança e eng. de software</div></div>
+        <div class="timeline-period-ch">270h</div><div class="timeline-period-toggle">▼</div>
+      </div>
+      <div class="timeline-disciplines">
+        <div class="discipline-row"><div><div class="discipline-code">BTBEMEC.062</div><div class="discipline-name">Manutenção Mecânica</div></div><div class="discipline-ch-badge">60h</div></div>
+        <div class="discipline-row"><div><div class="discipline-code">BTBEMEC.063</div><div class="discipline-name">Sistemas da Qualidade</div></div><div class="discipline-ch-badge">30h</div></div>
+        <div class="discipline-row"><div><div class="discipline-code">BTBEMEC.065</div><div class="discipline-name">Direito e Legislação</div></div><div class="discipline-ch-badge">30h</div></div>
+        <div class="discipline-row"><div><div class="discipline-code">BTBEMEC.132</div><div class="discipline-name">Introdução ao CNC</div></div><div class="discipline-ch-badge">30h</div></div>
+        <div class="discipline-row"><div><div class="discipline-code">BTBEMEC.133</div><div class="discipline-name">Engenharia de Software para Indústria</div></div><div class="discipline-ch-badge">60h</div></div>
+        <div class="discipline-row"><div><div class="discipline-code">BTBEMEC.134</div><div class="discipline-name">Introdução à Robótica</div></div><div class="discipline-ch-badge">30h</div></div>
+        <div class="discipline-row"><div><div class="discipline-code">BTBEMEC.135</div><div class="discipline-name">Introdução à Segurança do Trabalho</div></div><div class="discipline-ch-badge">30h</div></div>
+      </div>
+    </div>
+
+  </div>
+  <p class="grade-note">* Matriz curricular oficial do IFMG Campus Betim · Bacharelado em Engenharia Mecânica. Consulte a coordenação do curso para informações atualizadas sobre optativas e atividades complementares.</p>
+</section>
+
+<!-- MAPA -->
+<section class="mapa-section" id="mapa">
+  <div class="mapa-inner">
+    <div class="mapa-info">
+      <div class="section-label light">Localização</div>
+      <h2>Como Chegar ao Campus Betim</h2>
+      <div class="mapa-detail">
+        <div class="mapa-detail-icon">📍</div>
+        <div class="mapa-detail-text"><h4>Endereço</h4><p>Rua Itaguaçu, 595 — Amazonas<br>Betim — MG, 32677-562</p></div>
+      </div>
+      <div class="mapa-detail">
+        <div class="mapa-detail-icon">🚌</div>
+        <div class="mapa-detail-text"><h4>Transporte Público</h4><p>Acesso por linhas de ônibus metropolitanas RMBH. Próximo ao terminal de integração de Betim.</p></div>
+      </div>
+      <div class="mapa-detail">
+        <div class="mapa-detail-icon">🕐</div>
+        <div class="mapa-detail-text"><h4>Horário do Curso</h4><p>Turno noturno · 19h às 22h30<br>Segunda a sexta-feira</p></div>
+      </div>
+      <div class="mapa-detail">
+        <div class="mapa-detail-icon">🌐</div>
+        <div class="mapa-detail-text"><h4>Contato Institucional</h4><p><a href="https://www.ifmg.edu.br/betim/o-campus-betim/localizacao-e-contato" target="_blank" rel="noopener">ifmg.edu.br/betim →</a></p></div>
+      </div>
+      <a href="https://maps.google.com/?q=IFMG+Campus+Betim,+Rua+Itaguacu+595,+Betim+MG" target="_blank" rel="noopener" class="mapa-gmaps-btn">🗺️ Abrir no Google Maps</a>
+    </div>
+    <iframe
+      class="mapa-embed"
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3751.0457!2d-44.2177!3d-19.9660!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xa690a6e24d4f0f%3A0x73abdc47fc52bf8f!2sIFMG%20-%20Campus%20Betim!5e0!3m2!1spt-BR!2sbr!4v1716921600000"
+      allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+      title="Localização IFMG Campus Betim">
+    </iframe>
   </div>
 </section>
 
@@ -464,8 +543,8 @@
   <div class="ingresso-grid">
     <div class="ingresso-card"><div class="ic-icon">📝</div><h3>Processo Seletivo</h3><p>Processo seletivo próprio do IFMG com vagas anuais. Acompanhe editais e datas no site oficial do campus Betim.</p></div>
     <div class="ingresso-card"><div class="ic-icon">🎓</div><h3>SISU / ENEM</h3><p>Ingresso via Sistema de Seleção Unificada do MEC, utilizando a nota do ENEM. Inscrições no período oficial do SISU.</p></div>
-    <div class="ingresso-card"><div class="ic-icon">🔄</div><h3>Transferência</h3><p>Estudantes de outros cursos do IFMG ou de outras IES podem solicitar transferência interna ou externa conforme edital vigente.</p></div>
-    <div class="ingresso-card"><div class="ic-icon">📜</div><h3>Novo Título</h3><p>Portadores de diploma superior que desejam obter nova titulação em Engenharia Mecânica pelo IFMG Betim.</p></div>
+    <div class="ingresso-card"><div class="ic-icon">🔄</div><h3>Transferência Interna ou Externa</h3><p>Estudantes de outros cursos do IFMG ou de outras IES podem solicitar transferência conforme edital vigente.</p></div>
+    <div class="ingresso-card"><div class="ic-icon">📜</div><h3>Obtenção de Novo Título</h3><p>Portadores de diploma superior que desejam obter nova titulação em Engenharia Mecânica pelo IFMG Betim.</p></div>
   </div>
 </section>
 
@@ -476,26 +555,32 @@
     <h2>Dê o Primeiro Passo para sua Carreira</h2>
     <p>36 vagas por ano. Ensino público, gratuito e de qualidade. Turno noturno para quem trabalha durante o dia.</p>
     <div class="cta-final-info">
-      <div class="cta-info-item"><span>✓</span> 36 vagas anuais · oferta regular</div>
+      <div class="cta-info-item"><span>✓</span> 36 vagas anuais ofertadas</div>
       <div class="cta-info-item"><span>✓</span> Noturno: 19h às 22h30 (2ª a 6ª)</div>
-      <div class="cta-info-item"><span>✓</span> 3.600h · 10 semestres mínimos</div>
+      <div class="cta-info-item"><span>✓</span> Carga horária: 3.600h · 5 anos</div>
       <div class="cta-info-item"><span>✓</span> Ensino 100% gratuito e público</div>
       <div class="cta-info-item"><span>✓</span> SISU, Processo Seletivo e Transferência</div>
     </div>
   </div>
-  <div class="cta-form">
-    <input type="text" placeholder="Seu nome completo">
-    <input type="email" placeholder="Seu e-mail">
-    <input type="tel" placeholder="Seu WhatsApp">
-    <select>
-      <option value="" disabled selected>Como pretende ingressar?</option>
-      <option>SISU / ENEM</option>
-      <option>Processo Seletivo IFMG</option>
-      <option>Transferência Interna</option>
-      <option>Transferência Externa</option>
-      <option>Obtenção de Novo Título</option>
-    </select>
-    <button class="btn-green" onclick="alert('Interesse registrado! Acompanhe os editais em ifmg.edu.br/betim')">Quero saber mais sobre as inscrições →</button>
+  <div style="display:flex;flex-direction:column;gap:1.5rem;position:relative;z-index:2;">
+    <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);padding:2rem;border-radius:2px;">
+      <div style="font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:2px;text-transform:uppercase;color:#7ed9a8;margin-bottom:1rem;">Formas de Ingresso</div>
+      <div style="display:flex;flex-direction:column;gap:.6rem;margin-bottom:1.5rem;">
+        <div style="display:flex;align-items:center;gap:10px;font-size:.8rem;color:rgba(255,255,255,0.6)"><span style="color:#7ed9a8">→</span> SISU / ENEM</div>
+        <div style="display:flex;align-items:center;gap:10px;font-size:.8rem;color:rgba(255,255,255,0.6)"><span style="color:#7ed9a8">→</span> Processo Seletivo IFMG</div>
+        <div style="display:flex;align-items:center;gap:10px;font-size:.8rem;color:rgba(255,255,255,0.6)"><span style="color:#7ed9a8">→</span> Transferência Interna ou Externa</div>
+        <div style="display:flex;align-items:center;gap:10px;font-size:.8rem;color:rgba(255,255,255,0.6)"><span style="color:#7ed9a8">→</span> Obtenção de Novo Título</div>
+      </div>
+      <a href="https://www.ifmg.edu.br/betim/cursos-1/superior/superior" target="_blank" rel="noopener"
+         style="display:inline-flex;align-items:center;gap:10px;background:var(--green);color:white;text-decoration:none;font-family:'DM Sans',sans-serif;font-weight:700;font-size:.82rem;letter-spacing:1.5px;text-transform:uppercase;padding:18px 32px;border-radius:2px;transition:background .2s,transform .1s;width:100%;justify-content:center;"
+         onmouseover="this.style.background='#00904d';this.style.transform='translateY(-1px)'"
+         onmouseout="this.style.background='#00703c';this.style.transform='translateY(0)'">
+        Ver Informações de Ingresso no IFMG →
+      </a>
+    </div>
+    <div style="font-family:'DM Mono',monospace;font-size:.6rem;color:rgba(255,255,255,0.22);text-align:center;letter-spacing:1px;">
+      ifmg.edu.br/betim · Ensino público e gratuito
+    </div>
   </div>
 </section>
 
@@ -505,7 +590,25 @@
     <div class="footer-brand-top">IFMG — Instituto Federal de Minas Gerais</div>
     <div class="footer-brand-name">Campus Betim · Eng. <span>Mecânica</span></div>
   </div>
-  <p>© 2025 · Portaria 406/2021 · Ensino público e gratuito · MEC</p>
+  <div style="display:flex;flex-direction:column;align-items:center;gap:.5rem;">
+    <p>© 2025 · IFMG Campus Betim · Ensino público e gratuito · MEC</p>
+    <div style="display:flex;align-items:center;gap:.5rem;font-size:.68rem;color:rgba(255,255,255,0.28);font-family:'DM Mono',monospace;letter-spacing:1px;">
+      Desenvolvido por
+      <a href="https://www.instagram.com/gui.santos_1506?igsh=aGRwN3dtZXRnODli" target="_blank" rel="noopener"
+         style="display:inline-flex;align-items:center;gap:5px;color:rgba(255,255,255,0.5);text-decoration:none;transition:color .2s;"
+         onmouseover="this.style.color='#7ed9a8'" onmouseout="this.style.color='rgba(255,255,255,0.5)'">
+        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        @gui.santos_1506
+      </a>
+      <span style="opacity:.3;">·</span>
+      <a href="https://www.linkedin.com/in/guilherme-santos-66b8162a0?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" rel="noopener"
+         style="display:inline-flex;align-items:center;gap:5px;color:rgba(255,255,255,0.5);text-decoration:none;transition:color .2s;"
+         onmouseover="this.style.color='#7ed9a8'" onmouseout="this.style.color='rgba(255,255,255,0.5)'">
+        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        Guilherme Santos
+      </a>
+    </div>
+  </div>
   <div class="footer-links">
     <a href="https://www.ifmg.edu.br/betim" target="_blank" rel="noopener">IFMG Betim</a>
     <a href="https://www.sofirdobrasil.com.br" target="_blank" rel="noopener">Sofir do Brasil</a>
@@ -514,214 +617,92 @@
 </footer>
 
 <script>
-const curriculo = [
-  {
-    periodo: 1, label: '1º Período', titulo: 'Fundamentos da Engenharia', ch: 285,
-    cor: '#7ed9a8',
-    disciplinas: [
-      { codigo: 'BTBEMEC.015', nome: 'Introdução à Sociologia', ch: 30 },
-      { codigo: 'BTBEMEC.021', nome: 'Desenho Técnico I', ch: 60 },
-      { codigo: 'BTBEMEC.109', nome: 'Ciência dos Materiais I', ch: 30 },
-      { codigo: 'BTBEMEC.110', nome: 'Introdução à Engenharia', ch: 30 },
-      { codigo: 'BTBEMEC.111', nome: 'Cálculo I', ch: 75 },
-      { codigo: 'BTBEMEC.112', nome: 'Introdução à Ciência da Computação I', ch: 60 },
-    ]
-  },
-  {
-    periodo: 2, label: '2º Período', titulo: 'Ciências Fundamentais', ch: 300,
-    cor: '#52c98a',
-    disciplinas: [
-      { codigo: 'BTBEMEC.004', nome: 'Química Geral', ch: 60 },
-      { codigo: 'BTBEMEC.010', nome: 'Cálculo II', ch: 60 },
-      { codigo: 'BTBEMEC.012', nome: 'Física I', ch: 60 },
-      { codigo: 'BTBEMEC.018', nome: 'Ciência dos Materiais II', ch: 30 },
-      { codigo: 'BTBEMEC.026', nome: 'Desenho Técnico II - DAC', ch: 30 },
-      { codigo: 'BTBEMEC.113', nome: 'Geometria Analítica e Álgebra Linear', ch: 60 },
-    ]
-  },
-  {
-    periodo: 3, label: '3º Período', titulo: 'Mecânica e Física Aplicada', ch: 300,
-    cor: '#2eb87a',
-    disciplinas: [
-      { codigo: 'BTBEMEC.008', nome: 'Mecânica Geral', ch: 30 },
-      { codigo: 'BTBEMEC.016', nome: 'Cálculo III', ch: 60 },
-      { codigo: 'BTBEMEC.033', nome: 'Desenho Técnico III - Modelamento', ch: 60 },
-      { codigo: 'BTBEMEC.114', nome: 'Laboratório de Química Geral', ch: 30 },
-      { codigo: 'BTBEMEC.115', nome: 'Física II', ch: 60 },
-      { codigo: 'BTBEMEC.116', nome: 'Laboratório de Física I', ch: 30 },
-      { codigo: 'BTBEMEC.136', nome: 'Ciência dos Materiais III', ch: 30 },
-    ]
-  },
-  {
-    periodo: 4, label: '4º Período', titulo: 'Sistemas e Fenômenos Físicos', ch: 300,
-    cor: '#e85d04',
-    disciplinas: [
-      { codigo: 'BTBEMEC.013', nome: 'Metrologia', ch: 30 },
-      { codigo: 'BTBEMEC.022', nome: 'Física III', ch: 30 },
-      { codigo: 'BTBEMEC.025', nome: 'Mecânica dos Sólidos I', ch: 60 },
-      { codigo: 'BTBEMEC.028', nome: 'Introdução à Administração', ch: 30 },
-      { codigo: 'BTBEMEC.031', nome: 'Mecânica dos Fluidos', ch: 60 },
-      { codigo: 'BTBEMEC.117', nome: 'Laboratório de Física II', ch: 30 },
-      { codigo: 'BTBEMEC.137', nome: 'Equações Diferenciais Ordinárias', ch: 60 },
-    ]
-  },
-  {
-    periodo: 5, label: '5º Período', titulo: 'Energia e Fabricação I', ch: 300,
-    cor: '#f48c06',
-    disciplinas: [
-      { codigo: 'BTBEMEC.029', nome: 'Processos de Fabricação I', ch: 30 },
-      { codigo: 'BTBEMEC.030', nome: 'Mecânica dos Sólidos II', ch: 60 },
-      { codigo: 'BTBEMEC.032', nome: 'Probabilidade e Estatística', ch: 30 },
-      { codigo: 'BTBEMEC.041', nome: 'Sistemas Hidropneumáticos', ch: 60 },
-      { codigo: 'BTBEMEC.118', nome: 'Eletrotécnica', ch: 60 },
-      { codigo: 'BTBEMEC.119', nome: 'Termodinâmica', ch: 60 },
-    ]
-  },
-  {
-    periodo: 6, label: '6º Período', titulo: 'Projeto e Processos de Fabricação', ch: 300,
-    cor: '#2e86c1',
-    disciplinas: [
-      { codigo: 'BTBEMEC.019', nome: 'Metodologia Científica e Tecnológica', ch: 30 },
-      { codigo: 'BTBEMEC.039', nome: 'Mecânica dos Sólidos III', ch: 60 },
-      { codigo: 'BTBEMEC.120', nome: 'Transferência de Calor', ch: 60 },
-      { codigo: 'BTBEMEC.121', nome: 'Métodos Numéricos para Engenharia', ch: 45 },
-      { codigo: 'BTBEMEC.122', nome: 'Processos de Fabricação III - Soldagem Teórica', ch: 30 },
-      { codigo: 'BTBEMEC.123', nome: 'Elementos de Máquinas', ch: 45 },
-      { codigo: 'BTBEMEC.124', nome: 'Processos de Fabricação II - Usinagem', ch: 30 },
-    ]
-  },
-  {
-    periodo: 7, label: '7º Período', titulo: 'Sistemas Térmicos e Sustentabilidade', ch: 300,
-    cor: '#1a5276',
-    disciplinas: [
-      { codigo: 'BTBEMEC.040', nome: 'Ensaios Tecnológicos de Materiais', ch: 60 },
-      { codigo: 'BTBEMEC.056', nome: 'Motores de Combustão', ch: 60 },
-      { codigo: 'BTBEMEC.125', nome: 'Sistemas Térmicos - Máquinas de Calor e Fluxo', ch: 45 },
-      { codigo: 'BTBEMEC.126', nome: 'Processos de Fabricação III - Soldagem Prática', ch: 30 },
-      { codigo: 'BTBEMEC.127', nome: 'Processos de Fabricação IV - Lab. Usinagem', ch: 30 },
-      { codigo: 'BTBEMEC.128', nome: 'Sustentabilidade e Tecnologia Ambiental', ch: 30 },
-      { codigo: 'BTBEMEC.129', nome: 'Gestão Empresarial e Empreendedorismo', ch: 45 },
-    ]
-  },
-  {
-    periodo: 8, label: '8º Período', titulo: 'Projeto, Controle e TCC I', ch: 210,
-    cor: '#7d3c98',
-    disciplinas: [
-      { codigo: 'BTBEMEC.043', nome: 'Dinâmica das Máquinas - Mecanismos e Vibrações', ch: 30 },
-      { codigo: 'BTBEMEC.044', nome: 'Projeto de Ferramental I - Estampos', ch: 60 },
-      { codigo: 'BTBEMEC.048', nome: 'Instrumentação Industrial', ch: 30 },
-      { codigo: 'BTBEMEC.054', nome: 'CLP - Controlador Lógico Programável', ch: 30 },
-      { codigo: 'BTBEMEC.058', nome: 'TCC I', ch: 30 },
-      { codigo: 'BTBEMEC.060', nome: 'Ética, Profissão e Cidadania', ch: 30 },
-    ]
-  },
-  {
-    periodo: 9, label: '9º Período', titulo: 'Projetos Avançados e TCC II', ch: 240,
-    cor: '#c0392b',
-    disciplinas: [
-      { codigo: 'BTBEMEC.051', nome: 'Gerenciamento de Projetos I', ch: 30 },
-      { codigo: 'BTBEMEC.053', nome: 'Projeto de Ferramental II - Injeção de Termoplásticos', ch: 60 },
-      { codigo: 'BTBEMEC.061', nome: 'Instalações Industriais', ch: 30 },
-      { codigo: 'BTBEMEC.131', nome: 'Elementos Finitos', ch: 60 },
-      { codigo: 'BTBEMEC.138', nome: 'Engenharia Econômica', ch: 30 },
-      { codigo: 'BTBEMEC.592', nome: 'TCC II', ch: 30 },
-    ]
-  },
-  {
-    periodo: 10, label: '10º Período', titulo: 'Manutenção, Qualidade e Indústria 4.0', ch: 270,
-    cor: '#00703c',
-    disciplinas: [
-      { codigo: 'BTBEMEC.062', nome: 'Manutenção Mecânica', ch: 60 },
-      { codigo: 'BTBEMEC.063', nome: 'Sistemas da Qualidade', ch: 30 },
-      { codigo: 'BTBEMEC.065', nome: 'Direito e Legislação', ch: 30 },
-      { codigo: 'BTBEMEC.132', nome: 'Introdução ao CNC', ch: 30 },
-      { codigo: 'BTBEMEC.133', nome: 'Engenharia de Software para Indústria', ch: 60 },
-      { codigo: 'BTBEMEC.134', nome: 'Introdução à Robótica', ch: 30 },
-      { codigo: 'BTBEMEC.135', nome: 'Introdução à Segurança do Trabalho', ch: 30 },
-    ]
+  // HAMBURGER
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', () => {
+    const isOpen = mobileMenu.classList.toggle('open');
+    hamburger.classList.toggle('open', isOpen);
+    hamburger.setAttribute('aria-expanded', isOpen);
+  });
+  function closeMenu() {
+    mobileMenu.classList.remove('open');
+    hamburger.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', false);
   }
-];
 
-const totalCH = 3600;
-let currentPeriod = 1;
+  // TIMELINE ACCORDION
+  function togglePeriod(header) {
+    const disc = header.nextElementSibling;
+    const isOpen = disc.classList.toggle('open');
+    header.classList.toggle('open', isOpen);
+    updateProgress();
+  }
 
-function buildTimeline() {
-  const controls = document.getElementById('timelineControls');
-  const track = document.getElementById('timelineTrack');
-  const progressTrack = document.getElementById('progressTrack');
+  // FILTRO
+  function filterPeriod(period, btn) {
+    document.querySelectorAll('.grade-filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.timeline-period').forEach(p => {
+      const match = period === 'all' || parseInt(p.dataset.period) === period;
+      p.classList.toggle('hidden', !match);
+      if (!match) {
+        p.querySelector('.timeline-disciplines').classList.remove('open');
+        p.querySelector('.timeline-period-header').classList.remove('open');
+      }
+    });
+    updateProgress();
+  }
 
-  // Build progress segments
-  curriculo.forEach((p, i) => {
-    const seg = document.createElement('div');
-    seg.className = 'progress-seg';
-    seg.id = 'seg-' + p.periodo;
-    progressTrack.appendChild(seg);
-  });
-
-  // Build buttons
-  curriculo.forEach(p => {
-    const btn = document.createElement('button');
-    btn.className = 'period-btn' + (p.periodo === 1 ? ' active' : '');
-    btn.textContent = p.label;
-    btn.onclick = () => showPeriod(p.periodo);
-    controls.appendChild(btn);
-  });
-
-  // Build year cards
-  curriculo.forEach(p => {
-    const accCH = curriculo.slice(0, p.periodo).reduce((s,x) => s + x.ch, 0);
-    const pct = Math.round((accCH / totalCH) * 100);
-
-    const div = document.createElement('div');
-    div.className = 'timeline-year' + (p.periodo === 1 ? ' visible' : '');
-    div.id = 'year-' + p.periodo;
-    div.innerHTML = `
-      <div class="year-header">
-        <div class="year-badge" style="color:${p.cor}">${p.periodo}º</div>
-        <div class="year-info">
-          <div class="year-title">${p.titulo}</div>
-          <div class="year-ch">${p.label} · ${p.ch}h · Acumulado: ${accCH}h (${pct}%)</div>
-        </div>
-        <div class="year-bar"><div class="year-bar-fill" style="width:${pct}%; background:${p.cor}"></div></div>
-      </div>
-      <div class="disciplines-grid">
-        ${p.disciplinas.map(d => `
-          <div class="disc-card">
-            <div class="disc-code">${d.codigo}</div>
-            <div class="disc-name">${d.nome}</div>
-            <div class="disc-ch">${d.ch}h</div>
-          </div>
-        `).join('')}
-      </div>
-    `;
-    track.appendChild(div);
-  });
-
-  updateProgress(1);
-}
-
-function showPeriod(periodo) {
-  currentPeriod = periodo;
-  document.querySelectorAll('.timeline-year').forEach(el => el.classList.remove('visible'));
-  document.querySelectorAll('.period-btn').forEach(el => el.classList.remove('active'));
-  document.getElementById('year-' + periodo).classList.add('visible');
-  document.querySelectorAll('.period-btn')[periodo - 1].classList.add('active');
-  updateProgress(periodo);
-}
-
-function updateProgress(periodo) {
-  let accCH = 0;
-  curriculo.forEach((p, i) => {
-    const seg = document.getElementById('seg-' + p.periodo);
-    if (p.periodo < periodo) { seg.className = 'progress-seg done'; accCH += p.ch; }
-    else if (p.periodo === periodo) { seg.className = 'progress-seg active'; accCH += p.ch; }
-    else { seg.className = 'progress-seg'; }
-  });
-  document.getElementById('progressTotal').textContent = accCH + 'h / ' + totalCH + 'h';
-}
-
-buildTimeline();
+  // PROGRESSO
+  function updateProgress() {
+    const open = document.querySelectorAll('.timeline-disciplines.open').length;
+    const pct = Math.max(5, Math.round((open / 10) * 100));
+    document.getElementById('progressFill').style.width = pct + '%';
+    const label = document.getElementById('progressLabel');
+    if (open === 0) label.textContent = 'Clique em um período para explorar';
+    else if (open === 10) label.textContent = '🎓 Jornada completa — 10 semestres · 3.600h';
+    else label.textContent = open + ' de 10 semestres explorados · ' + (pct) + '%';
+  }
+  updateProgress();
 </script>
-
+<!-- Code injected by live-server -->
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
 </body>
 </html>
