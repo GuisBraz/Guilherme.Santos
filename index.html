@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Engenharia Mecânica — IFMG Campus Betim</title>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
@@ -16,13 +16,13 @@
     --white: #ffffff; --text-dark: #0d1b2a; --text-muted: #5a7090;
   }
   html { scroll-behavior: smooth; }
-  body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--text-dark); overflow-x: hidden; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--cream); color: var(--text-dark); overflow-x: hidden; }
 
   /* ── NAV ── */
   nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: var(--green-dark); display: flex; justify-content: space-between; align-items: center; padding: 0 4rem; height: 64px; border-bottom: 3px solid var(--orange); }
   .nav-brand { display: flex; flex-direction: column; gap: 1px; }
-  .nav-brand-top { font-family: 'DM Mono', monospace; font-size: 0.52rem; letter-spacing: 2px; color: rgba(255,255,255,0.45); text-transform: uppercase; }
-  .nav-brand-name { font-family: 'Bebas Neue', sans-serif; font-size: 1.2rem; color: var(--white); letter-spacing: 2px; }
+  .nav-brand-top { font-family: 'Courier New', monospace; font-size: 0.52rem; letter-spacing: 2px; color: rgba(255,255,255,0.45); text-transform: uppercase; }
+  .nav-brand-name { font-family: 'Arial Black', 'Impact', sans-serif; font-size: 1.2rem; color: var(--white); letter-spacing: 2px; }
   .nav-brand-name span { color: #7ed9a8; }
   .nav-links { display: flex; gap: 2rem; list-style: none; }
   .nav-links a { font-size: 0.72rem; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.6); text-decoration: none; transition: color 0.2s; }
@@ -37,10 +37,10 @@
   .hero-tag { display: inline-flex; align-items: center; gap: 8px; background: rgba(232,93,4,0.15); border: 1px solid rgba(232,93,4,0.4); color: #f4a86a; font-size: 0.67rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; padding: 6px 14px; border-radius: 2px; margin-bottom: 2rem; width: fit-content; }
   .hero-tag::before { content: ''; width: 6px; height: 6px; background: var(--orange); border-radius: 50%; animation: pulse 1.5s ease-in-out infinite; }
   @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.4;transform:scale(0.8)} }
-  .hero-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3.5rem,6.5vw,6rem); line-height: 0.95; color: var(--white); margin-bottom: 1.5rem; letter-spacing: 1px; }
+  .hero-title { font-family: 'Arial Black', 'Impact', sans-serif; font-size: clamp(3.5rem,6.5vw,6rem); line-height: 0.95; color: var(--white); margin-bottom: 1.5rem; letter-spacing: 1px; }
   .hero-title .highlight { color: #7ed9a8; display: block; }
   .hero-subtitle { font-size: 0.93rem; font-weight: 300; color: rgba(255,255,255,0.52); line-height: 1.8; max-width: 440px; margin-bottom: 1.2rem; }
-  .hero-portaria { font-family: 'DM Mono', monospace; font-size: 0.6rem; color: rgba(255,255,255,0.25); letter-spacing: 1px; margin-bottom: 2.5rem; }
+  .hero-portaria { font-family: 'Courier New', monospace; font-size: 0.6rem; color: rgba(255,255,255,0.25); letter-spacing: 1px; margin-bottom: 2.5rem; }
   .hero-cta-group { display: flex; gap: 1rem; align-items: center; }
   .btn-primary { background: var(--green); color: white; font-weight: 600; font-size: 0.8rem; letter-spacing: 1px; text-transform: uppercase; padding: 14px 30px; border: none; cursor: pointer; text-decoration: none; display: inline-block; transition: background 0.2s, transform 0.1s; border-radius: 2px; }
   .btn-primary:hover { background: #00904d; transform: translateY(-1px); }
@@ -50,12 +50,12 @@
   .hero-stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5px; width: 100%; max-width: 420px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.07); }
   .hero-stat { background: rgba(255,255,255,0.02); padding: 2.2rem 1.8rem; transition: background 0.2s; }
   .hero-stat:hover { background: rgba(0,112,60,0.15); }
-  .hero-stat-num { font-family: 'Bebas Neue', sans-serif; font-size: 3.2rem; line-height: 1; color: #7ed9a8; margin-bottom: 0.4rem; }
+  .hero-stat-num { font-family: 'Arial Black', 'Impact', sans-serif; font-size: 3.2rem; line-height: 1; color: #7ed9a8; margin-bottom: 0.4rem; }
   .hero-stat-label { font-size: 0.7rem; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; color: rgba(255,255,255,0.38); }
-  .hero-stat-detail { font-size: 0.6rem; color: rgba(255,255,255,0.2); margin-top: 3px; font-family: 'DM Mono', monospace; }
+  .hero-stat-detail { font-size: 0.6rem; color: rgba(255,255,255,0.2); margin-top: 3px; font-family: 'Courier New', monospace; }
 
   /* ── SHARED ── */
-  .section-label { font-family: 'DM Mono', monospace; font-size: 0.66rem; font-weight: 500; letter-spacing: 3px; text-transform: uppercase; color: var(--green); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 12px; }
+  .section-label { font-family: 'Courier New', monospace; font-size: 0.66rem; font-weight: 500; letter-spacing: 3px; text-transform: uppercase; color: var(--green); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 12px; }
   .section-label::after { content: ''; flex: 1; height: 1px; background: var(--green); max-width: 40px; }
   .section-label.light { color: #7ed9a8; }
   .section-label.light::after { background: #7ed9a8; }
@@ -64,7 +64,7 @@
 
   /* ── IFMG ── */
   .ifmg { padding: 7rem 6rem; background: white; display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
-  .ifmg-text h2 { font-family: 'Bebas Neue', sans-serif; font-size: 2.8rem; color: var(--green-dark); margin-bottom: 1.2rem; letter-spacing: 0.5px; line-height: 1.05; }
+  .ifmg-text h2 { font-family: 'Arial Black', 'Impact', sans-serif; font-size: 2.8rem; color: var(--green-dark); margin-bottom: 1.2rem; letter-spacing: 0.5px; line-height: 1.05; }
   .ifmg-text p { font-size: 0.9rem; font-weight: 300; color: #3a5068; line-height: 1.9; margin-bottom: 1rem; }
   .ifmg-text a { color: var(--green); font-weight: 500; text-decoration: none; border-bottom: 1px solid rgba(0,112,60,0.3); transition: border-color 0.2s; }
   .ifmg-text a:hover { border-color: var(--green); }
@@ -78,11 +78,11 @@
   /* ── APRESENTAÇÃO ── */
   .apresentacao { padding: 7rem 6rem; background: var(--cream); }
   .apresentacao-inner { display: grid; grid-template-columns: 2fr 1fr; gap: 5rem; align-items: start; margin-top: 0; }
-  .apresentacao h2 { font-family: 'Bebas Neue', sans-serif; font-size: 2.8rem; color: var(--steel); margin-bottom: 1.5rem; letter-spacing: 0.5px; }
+  .apresentacao h2 { font-family: 'Arial Black', 'Impact', sans-serif; font-size: 2.8rem; color: var(--steel); margin-bottom: 1.5rem; letter-spacing: 0.5px; }
   .apresentacao p { font-size: 0.9rem; font-weight: 300; color: #3a5068; line-height: 1.9; margin-bottom: 1rem; }
   .info-table { background: white; border: 1px solid var(--cream-dark); overflow: hidden; }
   .info-table-header { background: var(--green-dark); padding: 1rem 1.5rem; }
-  .info-table-header h4 { font-family: 'Bebas Neue', sans-serif; font-size: 1rem; color: white; letter-spacing: 2px; }
+  .info-table-header h4 { font-family: 'Arial Black', 'Impact', sans-serif; font-size: 1rem; color: white; letter-spacing: 2px; }
   .info-row { display: grid; grid-template-columns: 1fr 1.2fr; border-bottom: 1px solid var(--cream-dark); }
   .info-row:last-child { border-bottom: none; }
   .info-key { padding: 0.78rem 1rem; font-size: 0.68rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; background: #fafaf8; border-right: 1px solid var(--cream-dark); }
@@ -97,17 +97,17 @@
 
   /* ── SOFIR DESTAQUE ── */
   .sofir-section { padding: 7rem 6rem; background: var(--sofir-blue); position: relative; overflow: hidden; }
-  .sofir-section::before { content: 'SOFIR'; position: absolute; right: -40px; top: 50%; transform: translateY(-50%); font-family: 'Bebas Neue', sans-serif; font-size: 22vw; color: rgba(255,255,255,0.03); pointer-events: none; line-height: 1; }
+  .sofir-section::before { content: 'SOFIR'; position: absolute; right: -40px; top: 50%; transform: translateY(-50%); font-family: 'Arial Black', 'Impact', sans-serif; font-size: 22vw; color: rgba(255,255,255,0.03); pointer-events: none; line-height: 1; }
   .sofir-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; position: relative; z-index: 2; }
-  .sofir-text h2 { font-family: 'Bebas Neue', sans-serif; font-size: 2.8rem; color: white; margin-bottom: 0.5rem; letter-spacing: 0.5px; line-height: 1.05; }
+  .sofir-text h2 { font-family: 'Arial Black', 'Impact', sans-serif; font-size: 2.8rem; color: white; margin-bottom: 0.5rem; letter-spacing: 0.5px; line-height: 1.05; }
   .sofir-text h2 span { color: #7ec8e3; }
-  .sofir-tagline { font-family: 'DM Mono', monospace; font-size: 0.68rem; letter-spacing: 2px; color: rgba(255,255,255,0.35); text-transform: uppercase; margin-bottom: 1.5rem; }
+  .sofir-tagline { font-family: 'Courier New', monospace; font-size: 0.68rem; letter-spacing: 2px; color: rgba(255,255,255,0.35); text-transform: uppercase; margin-bottom: 1.5rem; }
   .sofir-text p { font-size: 0.88rem; font-weight: 300; color: rgba(255,255,255,0.55); line-height: 1.85; margin-bottom: 1rem; }
   .sofir-text a.sofir-link { display: inline-flex; align-items: center; gap: 8px; background: rgba(46,134,193,0.2); border: 1px solid rgba(46,134,193,0.4); color: #7ec8e3; font-size: 0.78rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; padding: 10px 20px; border-radius: 2px; text-decoration: none; margin-top: 0.5rem; transition: background 0.2s, border-color 0.2s; }
   .sofir-text a.sofir-link:hover { background: rgba(46,134,193,0.35); border-color: rgba(46,134,193,0.6); }
   .sofir-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.07); margin-top: 2.5rem; }
   .sofir-stat { background: rgba(255,255,255,0.03); padding: 1.8rem 1.5rem; }
-  .sofir-stat-num { font-family: 'Bebas Neue', sans-serif; font-size: 2.5rem; color: #7ec8e3; line-height: 1; margin-bottom: 0.3rem; }
+  .sofir-stat-num { font-family: 'Arial Black', 'Impact', sans-serif; font-size: 2.5rem; color: #7ec8e3; line-height: 1; margin-bottom: 0.3rem; }
   .sofir-stat-label { font-size: 0.7rem; color: rgba(255,255,255,0.38); letter-spacing: 1px; text-transform: uppercase; }
   .sofir-sectors { display: flex; flex-direction: column; gap: 1.5px; }
   .sofir-sector-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07); padding: 1.5rem 1.8rem; position: relative; overflow: hidden; transition: background 0.2s; border-left: 3px solid rgba(46,134,193,0.3); }
@@ -116,64 +116,64 @@
   .sofir-sector-name { font-size: 0.88rem; font-weight: 600; color: white; }
   .sofir-sector-icon { font-size: 1.3rem; }
   .sofir-sector-desc { font-size: 0.75rem; font-weight: 300; color: rgba(255,255,255,0.4); line-height: 1.6; }
-  .sofir-iso { display: inline-flex; align-items: center; gap: 8px; background: rgba(126,200,227,0.1); border: 1px solid rgba(126,200,227,0.25); padding: 6px 12px; border-radius: 2px; margin-top: 0.8rem; font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 1px; color: #7ec8e3; }
+  .sofir-iso { display: inline-flex; align-items: center; gap: 8px; background: rgba(126,200,227,0.1); border: 1px solid rgba(126,200,227,0.25); padding: 6px 12px; border-radius: 2px; margin-top: 0.8rem; font-family: 'Courier New', monospace; font-size: 0.62rem; letter-spacing: 1px; color: #7ec8e3; }
   .sofir-clientes { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 1.2rem; }
-  .cliente-tag { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); padding: 4px 10px; border-radius: 2px; font-size: 0.65rem; color: rgba(255,255,255,0.38); font-family: 'DM Mono', monospace; letter-spacing: 0.5px; }
+  .cliente-tag { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); padding: 4px 10px; border-radius: 2px; font-size: 0.65rem; color: rgba(255,255,255,0.38); font-family: 'Courier New', monospace; letter-spacing: 0.5px; }
 
   /* ── LINHA DO TEMPO / GRADE CURRICULAR ── */
   .timeline-section { padding: 7rem 6rem; background: var(--steel); position: relative; overflow: hidden; }
   .timeline-section::before { content: ''; position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px); background-size: 40px 40px; }
   .timeline-header { position: relative; z-index: 2; margin-bottom: 1rem; }
-  .timeline-header h2 { font-family: 'Bebas Neue', sans-serif; font-size: 2.8rem; color: white; letter-spacing: 0.5px; }
+  .timeline-header h2 { font-family: 'Arial Black', 'Impact', sans-serif; font-size: 2.8rem; color: white; letter-spacing: 0.5px; }
   .timeline-header p { font-size: 0.85rem; font-weight: 300; color: rgba(255,255,255,0.38); margin-top: 0.4rem; margin-bottom: 2.5rem; }
   .timeline-controls { display: flex; gap: 6px; margin-bottom: 3rem; flex-wrap: wrap; position: relative; z-index: 2; }
-  .period-btn { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 1.5px; text-transform: uppercase; padding: 8px 16px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.45); cursor: pointer; transition: all 0.2s; border-radius: 2px; }
+  .period-btn { font-family: 'Courier New', monospace; font-size: 0.65rem; letter-spacing: 1.5px; text-transform: uppercase; padding: 8px 16px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.45); cursor: pointer; transition: all 0.2s; border-radius: 2px; }
   .period-btn:hover { border-color: rgba(255,255,255,0.25); color: rgba(255,255,255,0.7); }
   .period-btn.active { background: var(--green); border-color: var(--green); color: white; }
   .timeline-track { position: relative; z-index: 2; }
   .timeline-year { display: none; }
   .timeline-year.visible { display: block; }
   .year-header { display: flex; align-items: center; gap: 1.5rem; margin-bottom: 1.8rem; }
-  .year-badge { font-family: 'Bebas Neue', sans-serif; font-size: 3.5rem; color: #7ed9a8; line-height: 1; flex-shrink: 0; }
+  .year-badge { font-family: 'Arial Black', 'Impact', sans-serif; font-size: 3.5rem; color: #7ed9a8; line-height: 1; flex-shrink: 0; }
   .year-info { display: flex; flex-direction: column; gap: 4px; }
   .year-title { font-size: 0.9rem; font-weight: 600; color: white; }
-  .year-ch { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 1px; color: rgba(255,255,255,0.3); }
+  .year-ch { font-family: 'Courier New', monospace; font-size: 0.65rem; letter-spacing: 1px; color: rgba(255,255,255,0.3); }
   .year-bar { height: 2px; background: rgba(255,255,255,0.06); flex: 1; position: relative; overflow: hidden; }
   .year-bar-fill { height: 100%; background: #7ed9a8; transition: width 0.8s ease; }
   .disciplines-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); margin-bottom: 3rem; }
   .disc-card { background: rgba(255,255,255,0.02); padding: 1.3rem 1.5rem; position: relative; transition: background 0.2s; border-left: 2px solid transparent; }
   .disc-card:hover { background: rgba(0,112,60,0.12); border-left-color: #7ed9a8; }
-  .disc-code { font-family: 'DM Mono', monospace; font-size: 0.58rem; letter-spacing: 1px; color: rgba(255,255,255,0.2); margin-bottom: 0.4rem; }
+  .disc-code { font-family: 'Courier New', monospace; font-size: 0.58rem; letter-spacing: 1px; color: rgba(255,255,255,0.2); margin-bottom: 0.4rem; }
   .disc-name { font-size: 0.82rem; font-weight: 500; color: rgba(255,255,255,0.82); margin-bottom: 0.4rem; line-height: 1.3; }
-  .disc-ch { font-family: 'DM Mono', monospace; font-size: 0.62rem; color: #7ed9a8; }
+  .disc-ch { font-family: 'Courier New', monospace; font-size: 0.62rem; color: #7ed9a8; }
   .timeline-progress { display: flex; align-items: center; gap: 2rem; margin-top: 1rem; padding: 1.5rem 2rem; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); position: relative; z-index: 2; }
-  .progress-label { font-size: 0.72rem; color: rgba(255,255,255,0.35); font-family: 'DM Mono', monospace; letter-spacing: 1px; flex-shrink: 0; }
+  .progress-label { font-size: 0.72rem; color: rgba(255,255,255,0.35); font-family: 'Courier New', monospace; letter-spacing: 1px; flex-shrink: 0; }
   .progress-track { flex: 1; height: 4px; background: rgba(255,255,255,0.06); border-radius: 2px; overflow: hidden; display: flex; gap: 2px; }
   .progress-seg { flex: 1; height: 100%; background: rgba(255,255,255,0.08); border-radius: 1px; transition: background 0.3s; }
   .progress-seg.done { background: #7ed9a8; }
   .progress-seg.active { background: var(--orange); }
-  .progress-total { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; color: #7ed9a8; flex-shrink: 0; }
+  .progress-total { font-family: 'Arial Black', 'Impact', sans-serif; font-size: 1.5rem; color: #7ed9a8; flex-shrink: 0; }
 
   /* ── ÁREAS ── */
   .areas { background: #0f1c2a; padding: 7rem 6rem; position: relative; overflow: hidden; }
   .areas::before { content: ''; position: absolute; bottom: -100px; left: -100px; width: 500px; height: 500px; border-radius: 50%; background: radial-gradient(circle, rgba(0,112,60,0.08) 0%, transparent 70%); }
   .areas-header { margin-bottom: 3.5rem; }
-  .areas-header h2 { font-family: 'Bebas Neue', sans-serif; font-size: 2.8rem; color: white; letter-spacing: 1px; line-height: 1; margin-bottom: 0.4rem; }
+  .areas-header h2 { font-family: 'Arial Black', 'Impact', sans-serif; font-size: 2.8rem; color: white; letter-spacing: 1px; line-height: 1; margin-bottom: 0.4rem; }
   .areas-header p { font-size: 0.8rem; font-weight: 300; color: rgba(255,255,255,0.35); }
   .areas-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.05); }
   .area-card { background: #0f1c2a; padding: 2.2rem; position: relative; overflow: hidden; transition: background 0.3s; }
   .area-card::after { content: ''; position: absolute; bottom: 0; left: 0; height: 2px; width: 0; background: #7ed9a8; transition: width 0.4s ease; }
   .area-card:hover { background: #1a2d42; }
   .area-card:hover::after { width: 100%; }
-  .area-num { font-family: 'DM Mono', monospace; font-size: 0.58rem; color: #7ed9a8; letter-spacing: 2px; margin-bottom: 1.2rem; }
-  .area-industry { font-size: 0.58rem; letter-spacing: 1px; text-transform: uppercase; color: rgba(255,255,255,0.2); margin-bottom: 0.5rem; font-family: 'DM Mono', monospace; }
+  .area-num { font-family: 'Courier New', monospace; font-size: 0.58rem; color: #7ed9a8; letter-spacing: 2px; margin-bottom: 1.2rem; }
+  .area-industry { font-size: 0.58rem; letter-spacing: 1px; text-transform: uppercase; color: rgba(255,255,255,0.2); margin-bottom: 0.5rem; font-family: 'Courier New', monospace; }
   .area-icon { font-size: 2rem; margin-bottom: 1.1rem; display: block; }
   .area-card h3 { font-size: 0.92rem; font-weight: 600; color: white; margin-bottom: 0.5rem; }
   .area-card p { font-size: 0.77rem; font-weight: 300; color: rgba(255,255,255,0.38); line-height: 1.7; }
 
   /* ── INGRESSO ── */
   .ingresso { padding: 7rem 6rem; background: var(--cream); }
-  .ingresso h2 { font-family: 'Bebas Neue', sans-serif; font-size: 2.8rem; color: var(--steel); margin-bottom: 3.5rem; letter-spacing: 0.5px; }
+  .ingresso h2 { font-family: 'Arial Black', 'Impact', sans-serif; font-size: 2.8rem; color: var(--steel); margin-bottom: 3.5rem; letter-spacing: 0.5px; }
   .ingresso-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--cream-dark); border: 1px solid var(--cream-dark); }
   .ingresso-card { background: white; padding: 2rem 1.5rem; border-top: 3px solid transparent; transition: border-color 0.2s, background 0.2s; }
   .ingresso-card:hover { border-color: var(--green); background: var(--green-light); }
@@ -183,25 +183,25 @@
 
   /* ── CTA ── */
   .cta-final { background: var(--green-dark); padding: 7rem 6rem; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; position: relative; overflow: hidden; }
-  .cta-final::before { content: 'EM'; position: absolute; right: -20px; top: 50%; transform: translateY(-50%); font-family: 'Bebas Neue', sans-serif; font-size: 30vw; color: rgba(255,255,255,0.03); pointer-events: none; line-height: 1; }
-  .cta-final h2 { font-family: 'Bebas Neue', sans-serif; font-size: 3.5rem; color: white; letter-spacing: 1px; line-height: 1; margin-bottom: 1rem; }
+  .cta-final::before { content: 'EM'; position: absolute; right: -20px; top: 50%; transform: translateY(-50%); font-family: 'Arial Black', 'Impact', sans-serif; font-size: 30vw; color: rgba(255,255,255,0.03); pointer-events: none; line-height: 1; }
+  .cta-final h2 { font-family: 'Arial Black', 'Impact', sans-serif; font-size: 3.5rem; color: white; letter-spacing: 1px; line-height: 1; margin-bottom: 1rem; }
   .cta-final p { color: rgba(255,255,255,0.42); font-size: 0.88rem; font-weight: 300; line-height: 1.8; }
   .cta-final-info { display: flex; flex-direction: column; gap: 0.6rem; margin-top: 1.5rem; }
   .cta-info-item { display: flex; align-items: center; gap: 10px; font-size: 0.77rem; color: rgba(255,255,255,0.45); }
   .cta-info-item span { color: #7ed9a8; }
   .cta-form { display: flex; flex-direction: column; gap: 1rem; position: relative; z-index: 2; }
-  .cta-form input, .cta-form select { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.13); color: white; font-family: 'DM Sans', sans-serif; font-size: 0.88rem; padding: 14px 18px; border-radius: 2px; outline: none; transition: border-color 0.2s, background 0.2s; }
+  .cta-form input, .cta-form select { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.13); color: white; font-family: 'Segoe UI', Arial, sans-serif; font-size: 0.88rem; padding: 14px 18px; border-radius: 2px; outline: none; transition: border-color 0.2s, background 0.2s; }
   .cta-form input::placeholder { color: rgba(255,255,255,0.28); }
   .cta-form select option { background: var(--green-dark); }
   .cta-form input:focus, .cta-form select:focus { border-color: #7ed9a8; background: rgba(255,255,255,0.1); }
-  .btn-green { background: var(--green); color: white; font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 0.8rem; letter-spacing: 1.5px; text-transform: uppercase; padding: 16px 32px; border: none; cursor: pointer; transition: background 0.2s, transform 0.1s; border-radius: 2px; margin-top: 0.5rem; }
+  .btn-green { background: var(--green); color: white; font-family: 'Segoe UI', Arial, sans-serif; font-weight: 700; font-size: 0.8rem; letter-spacing: 1.5px; text-transform: uppercase; padding: 16px 32px; border: none; cursor: pointer; transition: background 0.2s, transform 0.1s; border-radius: 2px; margin-top: 0.5rem; }
   .btn-green:hover { background: #00904d; transform: translateY(-1px); }
 
   /* ── FOOTER ── */
   footer { background: #040d07; padding: 2.5rem 6rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
   .footer-brand { display: flex; flex-direction: column; gap: 2px; }
-  .footer-brand-top { font-size: 0.55rem; color: rgba(255,255,255,0.2); letter-spacing: 2px; text-transform: uppercase; font-family: 'DM Mono', monospace; }
-  .footer-brand-name { font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem; color: white; letter-spacing: 2px; }
+  .footer-brand-top { font-size: 0.55rem; color: rgba(255,255,255,0.2); letter-spacing: 2px; text-transform: uppercase; font-family: 'Courier New', monospace; }
+  .footer-brand-name { font-family: 'Arial Black', 'Impact', sans-serif; font-size: 1.1rem; color: white; letter-spacing: 2px; }
   .footer-brand-name span { color: #7ed9a8; }
   footer p { font-size: 0.68rem; color: rgba(255,255,255,0.17); font-weight: 300; }
   .footer-links { display: flex; gap: 2rem; }
